@@ -308,41 +308,69 @@ button {
 .navbar__links {
   display: flex;
   list-style: none;
-  gap: 4px;
+  gap: 2px;
 }
 
-.navbar__link-anchor {
+/* ── Pinterest-style nav item ── */
+.nav-item {
   position: relative;
-  display: block;
-  padding: 8px 18px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 20px;
+  min-width: 60px;
+  min-height: 52px;
   border-radius: 999px;
-  isolation: isolate;
-  transition: color 0.22s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dim);
+  font-family: var(--font-sans);
+  transition: color 0.2s ease;
 }
 
-.navbar__link-anchor.is-active {
-  color: var(--goo-pill-text);
-}
-
-/* Sliding pill indicator */
-.navbar__pill {
+/* Floating glowing bubble that slides between items */
+.nav-item__bubble {
   position: absolute;
   inset: 0;
   border-radius: 999px;
-  background: var(--goo-pill-bg);
+  background: linear-gradient(135deg,
+    rgba(99, 102, 241, 0.18),
+    rgba(139, 92, 246, 0.16));
+  border: 1px solid rgba(99, 102, 241, 0.25);
   box-shadow:
-    0 2px 12px rgba(99, 102, 241, 0.18),
+    0 0 20px rgba(99, 102, 241, 0.22),
+    0 4px 16px rgba(0, 0, 0, 0.15),
     var(--neo-shadow-small);
-  z-index: -1;
+  z-index: 0;
 }
 
-.navbar__link-label {
+/* Icon */
+.nav-item__icon {
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
+
+/* Label — only visible when active */
+.nav-item__label {
+  position: relative;
+  z-index: 1;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accent);
+  line-height: 1;
+}
+
 
 .navbar__actions {
   display: flex;

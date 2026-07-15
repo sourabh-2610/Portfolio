@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiHome, HiUser, HiLightningBolt, HiCode, HiMail } from 'react-icons/hi'
 import ThemeToggle from './ThemeToggle'
@@ -12,10 +12,8 @@ const links = [
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false)
-  const [active, setActive]       = useState('home')
-  const [hovered, setHovered]     = useState(null)
-  const pillRef                   = useRef({})
+  const [scrolled, setScrolled] = useState(false)
+  const [active, setActive]     = useState('home')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -44,12 +42,9 @@ export default function Navbar() {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  // Which link shows the highlight: hovered > active
-  const highlighted = hovered ?? active
-
   return (
     <>
-      {/* ── Desktop / Tablet Navbar ── */}
+      {/* ─── Top Navbar ─── */}
       <motion.header
         className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
         initial={{ y: -100, opacity: 0 }}
@@ -57,6 +52,7 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <nav className="navbar__inner container">
+
           {/* Logo */}
           <motion.a
             href="#home"
@@ -68,36 +64,62 @@ export default function Navbar() {
             SD<span className="navbar__logo-dot">.</span>
           </motion.a>
 
-          {/* Desktop links with sliding pill */}
+          {/* ── Pinterest-style animated nav links ── */}
           <ul className="navbar__links" role="list">
             {links.map((link, i) => {
               const id = link.href.slice(1)
-              const isActive = highlighted === id
+              const isActive = active === id
               return (
                 <motion.li
                   key={link.href}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
-                  ref={(el) => { pillRef.current[id] = el }}
                 >
-                  <a
-                    href={link.href}
-                    className={`navbar__link-anchor ${isActive ? 'is-active' : ''}`}
-                    onMouseEnter={() => setHovered(id)}
-                    onMouseLeave={() => setHovered(null)}
-                    onClick={(e) => { e.preventDefault(); handleClick(link.href) }}
+                  <button
+                    className={`nav-item ${isActive ? 'is-active' : ''}`}
+                    onClick={() => handleClick(link.href)}
+                    aria-label={link.label}
+                    aria-current={isActive ? 'page' : undefined}
                   >
-                    {/* Sliding pill — shared layoutId makes it animate between links */}
-                    {isActive && (
-                      <motion.span
-                        className="navbar__pill"
-                        layoutId="nav-pill"
-                        transition={{ type: 'spring', stiffness: 500, damping: 38 }}
-                      />
-                    )}
-                    <span className="navbar__link-label">{link.label}</span>
-                  </a>
+                    {/* Spring-animated floating bubble */}
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.span
+                          className="nav-item__bubble"
+                          layoutId="nav-bubble"
+                          initial={{ scale: 0.5, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.5, opacity: 0 }}
+                          transition={{ type: 'spring', stiffness: 480, damping: 30 }}
+                        />
+                      )}
+                    </AnimatePresence>
+
+                    {/* Icon — lifts up when active */}
+                    <motion.span
+                      className="nav-item__icon"
+                      animate={isActive
+                        ? { y: -5, scale: 1.22, color: 'var(--accent)' }
+                        : { y: 0,  scale: 1,    color: 'var(--text-dim)' }
+                      }
+                      transition={{ type: 'spring', stiffness: 500, damping: 28 }}
+                    >
+                      <link.Icon />
+                    </motion.span>
+
+                    {/* Label — fades in below icon when active */}
+                    <motion.span
+                      className="nav-item__label"
+                      animate={isActive
+                        ? { opacity: 1, y: 0 }
+                        : { opacity: 0, y: 3 }
+                      }
+                      transition={{ duration: 0.2 }}
+                    >
+                      {link.label}
+                    </motion.span>
+                  </button>
                 </motion.li>
               )
             })}
@@ -117,14 +139,14 @@ export default function Navbar() {
             </motion.a>
           </div>
 
-          {/* Mobile — only theme toggle visible in top bar */}
+          {/* Mobile top bar — only theme toggle */}
           <div className="navbar__mobile-actions">
             <ThemeToggle />
           </div>
         </nav>
       </motion.header>
 
-      {/* ── Mobile Bottom Navigation Bar ── */}
+      {/* ─── Mobile Bottom Navigation Bar ─── */}
       <motion.nav
         className="bottom-nav"
         aria-label="Mobile navigation"
@@ -143,38 +165,34 @@ export default function Navbar() {
               aria-label={link.label}
               aria-current={isActive ? 'page' : undefined}
             >
-              {/* Floating bubble behind the active icon */}
+              {/* Floating bubble */}
               <AnimatePresence>
                 {isActive && (
                   <motion.span
                     className="bottom-nav__bubble"
-                    layoutId="bottom-nav-bubble"
-                    initial={{ scale: 0.6, opacity: 0 }}
+                    layoutId="bottom-bubble"
+                    initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.6, opacity: 0 }}
-                    transition={{ type: 'spring', stiffness: 500, damping: 34 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 32 }}
                   />
                 )}
               </AnimatePresence>
 
+              {/* Icon lifts up */}
               <motion.span
                 className="bottom-nav__icon"
-                animate={isActive
-                  ? { y: -6, scale: 1.18 }
-                  : { y: 0,  scale: 1 }
-                }
-                transition={{ type: 'spring', stiffness: 480, damping: 30 }}
+                animate={isActive ? { y: -6, scale: 1.2 } : { y: 0, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 480, damping: 28 }}
               >
                 <link.Icon />
               </motion.span>
 
+              {/* Label fades in */}
               <motion.span
                 className="bottom-nav__label"
-                animate={isActive
-                  ? { opacity: 1, y: 0 }
-                  : { opacity: 0, y: 4 }
-                }
-                transition={{ duration: 0.22 }}
+                animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
+                transition={{ duration: 0.2 }}
               >
                 {link.label}
               </motion.span>
