@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HiMenuAlt3, HiX } from 'react-icons/hi'
+import { HiHome, HiUser, HiLightningBolt, HiCode, HiMail } from 'react-icons/hi'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#home',     label: 'Home',     Icon: HiHome },
+  { href: '#about',    label: 'About',    Icon: HiUser },
+  { href: '#skills',   label: 'Skills',   Icon: HiLightningBolt },
+  { href: '#projects', label: 'Projects', Icon: HiCode },
+  { href: '#contact',  label: 'Contact',  Icon: HiMail },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [active, setActive] = useState('home')
-  const [hovered, setHovered] = useState(null)
+  const [scrolled, setScrolled]   = useState(false)
+  const [active, setActive]       = useState('home')
+  const [hovered, setHovered]     = useState(null)
+  const pillRef                   = useRef({})
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -41,31 +41,23 @@ export default function Navbar() {
   }, [])
 
   const handleClick = (href) => {
-    setMenuOpen(false)
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // Which link shows the highlight: hovered > active
+  const highlighted = hovered ?? active
+
   return (
     <>
+      {/* ── Desktop / Tablet Navbar ── */}
       <motion.header
         className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <svg className="navbar__goo-filter" aria-hidden="true" focusable="false">
-          <filter id="gooey-nav-filter">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
-              result="goo"
-            />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </svg>
         <nav className="navbar__inner container">
+          {/* Logo */}
           <motion.a
             href="#home"
             className="navbar__logo"
@@ -76,42 +68,42 @@ export default function Navbar() {
             SD<span className="navbar__logo-dot">.</span>
           </motion.a>
 
-          <ul className="navbar__links">
-            {links.map((link, i) => (
-              <motion.li
-                key={link.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
-              >
-                <a
-                  href={link.href}
-                  className={active === link.href.slice(1) ? 'active' : ''}
-                  onMouseEnter={() => setHovered(link.href.slice(1))}
-                  onMouseLeave={() => setHovered(null)}
-                  onClick={(e) => { e.preventDefault(); handleClick(link.href) }}
+          {/* Desktop links with sliding pill */}
+          <ul className="navbar__links" role="list">
+            {links.map((link, i) => {
+              const id = link.href.slice(1)
+              const isActive = highlighted === id
+              return (
+                <motion.li
+                  key={link.href}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
+                  ref={(el) => { pillRef.current[id] = el }}
                 >
-                  <span
-                    className={`navbar__gooey ${hovered === link.href.slice(1) || (!hovered && active === link.href.slice(1)) ? 'is-visible' : ''}`}
-                    aria-hidden="true"
+                  <a
+                    href={link.href}
+                    className={`navbar__link-anchor ${isActive ? 'is-active' : ''}`}
+                    onMouseEnter={() => setHovered(id)}
+                    onMouseLeave={() => setHovered(null)}
+                    onClick={(e) => { e.preventDefault(); handleClick(link.href) }}
                   >
-                    <motion.span
-                      className="navbar__gooey-pill"
-                      layoutId="nav-gooey-pill"
-                      transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-                    />
-                    <span className="navbar__gooey-dot navbar__gooey-dot--1" />
-                    <span className="navbar__gooey-dot navbar__gooey-dot--2" />
-                    <span className="navbar__gooey-dot navbar__gooey-dot--3" />
-                    <span className="navbar__gooey-dot navbar__gooey-dot--4" />
-                    <span className="navbar__gooey-dot navbar__gooey-dot--5" />
-                  </span>
-                  <span className="navbar__link-label">{link.label}</span>
-                </a>
-              </motion.li>
-            ))}
+                    {/* Sliding pill — shared layoutId makes it animate between links */}
+                    {isActive && (
+                      <motion.span
+                        className="navbar__pill"
+                        layoutId="nav-pill"
+                        transition={{ type: 'spring', stiffness: 500, damping: 38 }}
+                      />
+                    )}
+                    <span className="navbar__link-label">{link.label}</span>
+                  </a>
+                </motion.li>
+              )
+            })}
           </ul>
 
+          {/* Desktop actions */}
           <div className="navbar__actions">
             <ThemeToggle />
             <motion.a
@@ -125,52 +117,71 @@ export default function Navbar() {
             </motion.a>
           </div>
 
+          {/* Mobile — only theme toggle visible in top bar */}
           <div className="navbar__mobile-actions">
             <ThemeToggle />
-            <button
-              className="navbar__toggle"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-              {menuOpen ? <HiX /> : <HiMenuAlt3 />}
-            </button>
           </div>
         </nav>
       </motion.header>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="mobile-menu"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <ul>
-              <li className="mobile-menu__theme">
-                <span>Theme</span>
-                <ThemeToggle />
-              </li>
-              {links.map((link, i) => (
-                <motion.li
-                  key={link.href}
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i, duration: 0.4 }}
-                >
-                  <a
-                    href={link.href}
-                    onClick={(e) => { e.preventDefault(); handleClick(link.href) }}
-                  >
-                    {link.label}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* ── Mobile Bottom Navigation Bar ── */}
+      <motion.nav
+        className="bottom-nav"
+        aria-label="Mobile navigation"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {links.map((link) => {
+          const id = link.href.slice(1)
+          const isActive = active === id
+          return (
+            <button
+              key={link.href}
+              className={`bottom-nav__item ${isActive ? 'is-active' : ''}`}
+              onClick={() => handleClick(link.href)}
+              aria-label={link.label}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {/* Floating bubble behind the active icon */}
+              <AnimatePresence>
+                {isActive && (
+                  <motion.span
+                    className="bottom-nav__bubble"
+                    layoutId="bottom-nav-bubble"
+                    initial={{ scale: 0.6, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.6, opacity: 0 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 34 }}
+                  />
+                )}
+              </AnimatePresence>
+
+              <motion.span
+                className="bottom-nav__icon"
+                animate={isActive
+                  ? { y: -6, scale: 1.18 }
+                  : { y: 0,  scale: 1 }
+                }
+                transition={{ type: 'spring', stiffness: 480, damping: 30 }}
+              >
+                <link.Icon />
+              </motion.span>
+
+              <motion.span
+                className="bottom-nav__label"
+                animate={isActive
+                  ? { opacity: 1, y: 0 }
+                  : { opacity: 0, y: 4 }
+                }
+                transition={{ duration: 0.22 }}
+              >
+                {link.label}
+              </motion.span>
+            </button>
+          )
+        })}
+      </motion.nav>
     </>
   )
 }
