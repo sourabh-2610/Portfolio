@@ -11,6 +11,55 @@ const links = [
   { href: '#contact',  label: 'Contact',  Icon: HiMail },
 ]
 
+/* Reusable NavButton — used in both desktop & mobile nav */
+function NavButton({ link, isActive, onClick, layoutPrefix }) {
+  return (
+    <button
+      className={`nav-btn ${isActive ? 'is-active' : ''}`}
+      onClick={() => onClick(link.href)}
+      aria-label={link.label}
+      aria-current={isActive ? 'page' : undefined}
+    >
+      {/* White glow bar at top + cone of light — spring-slides between items */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.span
+            className="nav-btn__light-wrap"
+            layoutId={`${layoutPrefix}-light`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 420, damping: 34 }}
+          >
+            {/* The white LED bar */}
+            <span className="nav-btn__bar" />
+            {/* The cone of reflected light below the bar */}
+            <span className="nav-btn__cone" />
+          </motion.span>
+        )}
+      </AnimatePresence>
+
+      {/* Icon */}
+      <motion.span
+        className="nav-btn__icon"
+        animate={isActive ? { scale: 1.15 } : { scale: 1 }}
+        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+      >
+        <link.Icon />
+      </motion.span>
+
+      {/* Label */}
+      <motion.span
+        className="nav-btn__label"
+        animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 3 }}
+        transition={{ duration: 0.18 }}
+      >
+        {link.label}
+      </motion.span>
+    </button>
+  )
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive]     = useState('home')
@@ -44,7 +93,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ─── Top Navbar ─── */}
+      {/* ─── Desktop / Tablet Navbar ─── */}
       <motion.header
         className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
         initial={{ y: -100, opacity: 0 }}
@@ -64,11 +113,10 @@ export default function Navbar() {
             SD<span className="navbar__logo-dot">.</span>
           </motion.a>
 
-          {/* ── Pinterest-style animated nav links ── */}
+          {/* Desktop nav links */}
           <ul className="navbar__links" role="list">
             {links.map((link, i) => {
               const id = link.href.slice(1)
-              const isActive = active === id
               return (
                 <motion.li
                   key={link.href}
@@ -76,50 +124,12 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 >
-                  <button
-                    className={`nav-item ${isActive ? 'is-active' : ''}`}
-                    onClick={() => handleClick(link.href)}
-                    aria-label={link.label}
-                    aria-current={isActive ? 'page' : undefined}
-                  >
-                    {/* Spring-animated floating bubble */}
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.span
-                          className="nav-item__bubble"
-                          layoutId="nav-bubble"
-                          initial={{ scale: 0.5, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0.5, opacity: 0 }}
-                          transition={{ type: 'spring', stiffness: 480, damping: 30 }}
-                        />
-                      )}
-                    </AnimatePresence>
-
-                    {/* Icon — lifts up when active */}
-                    <motion.span
-                      className="nav-item__icon"
-                      animate={isActive
-                        ? { y: -5, scale: 1.22, color: 'var(--accent)' }
-                        : { y: 0,  scale: 1,    color: 'var(--text-dim)' }
-                      }
-                      transition={{ type: 'spring', stiffness: 500, damping: 28 }}
-                    >
-                      <link.Icon />
-                    </motion.span>
-
-                    {/* Label — fades in below icon when active */}
-                    <motion.span
-                      className="nav-item__label"
-                      animate={isActive
-                        ? { opacity: 1, y: 0 }
-                        : { opacity: 0, y: 3 }
-                      }
-                      transition={{ duration: 0.2 }}
-                    >
-                      {link.label}
-                    </motion.span>
-                  </button>
+                  <NavButton
+                    link={link}
+                    isActive={active === id}
+                    onClick={handleClick}
+                    layoutPrefix="desk"
+                  />
                 </motion.li>
               )
             })}
@@ -132,14 +142,14 @@ export default function Navbar() {
               href="#contact"
               className="btn btn--primary navbar__cta"
               onClick={(e) => { e.preventDefault(); handleClick('#contact') }}
-              whileHover={{ scale: 1.04, boxShadow: '0 8px 30px rgba(99, 102, 241, 0.4)' }}
+              whileHover={{ scale: 1.04, boxShadow: '0 8px 30px rgba(99,102,241,0.4)' }}
               whileTap={{ scale: 0.97 }}
             >
               Let's Talk
             </motion.a>
           </div>
 
-          {/* Mobile top bar — only theme toggle */}
+          {/* Mobile — only theme toggle in top bar */}
           <div className="navbar__mobile-actions">
             <ThemeToggle />
           </div>
@@ -156,47 +166,14 @@ export default function Navbar() {
       >
         {links.map((link) => {
           const id = link.href.slice(1)
-          const isActive = active === id
           return (
-            <button
+            <NavButton
               key={link.href}
-              className={`bottom-nav__item ${isActive ? 'is-active' : ''}`}
-              onClick={() => handleClick(link.href)}
-              aria-label={link.label}
-              aria-current={isActive ? 'page' : undefined}
-            >
-              {/* Floating bubble */}
-              <AnimatePresence>
-                {isActive && (
-                  <motion.span
-                    className="bottom-nav__bubble"
-                    layoutId="bottom-bubble"
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.5, opacity: 0 }}
-                    transition={{ type: 'spring', stiffness: 500, damping: 32 }}
-                  />
-                )}
-              </AnimatePresence>
-
-              {/* Icon lifts up */}
-              <motion.span
-                className="bottom-nav__icon"
-                animate={isActive ? { y: -6, scale: 1.2 } : { y: 0, scale: 1 }}
-                transition={{ type: 'spring', stiffness: 480, damping: 28 }}
-              >
-                <link.Icon />
-              </motion.span>
-
-              {/* Label fades in */}
-              <motion.span
-                className="bottom-nav__label"
-                animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
-                transition={{ duration: 0.2 }}
-              >
-                {link.label}
-              </motion.span>
-            </button>
+              link={link}
+              isActive={active === id}
+              onClick={handleClick}
+              layoutPrefix="mob"
+            />
           )
         })}
       </motion.nav>
