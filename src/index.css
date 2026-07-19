@@ -308,10 +308,10 @@ button {
 .navbar__links {
   display: flex;
   list-style: none;
-  gap: 2px;
+  gap: 4px;
 }
 
-/* ── White-bar spotlight nav button (desktop + mobile) ── */
+/* ── White-bar spotlight nav button ── */
 .nav-btn {
   position: relative;
   display: flex;
@@ -319,69 +319,76 @@ button {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  padding: 10px 18px;
-  min-width: 62px;
-  min-height: 58px;
-  border-radius: 18px;
+  padding: 10px 20px;
+  min-width: 68px;
+  min-height: 56px;
+  border-radius: 16px;
   background: transparent;
   border: none;
   cursor: pointer;
   color: var(--text-dim);
   font-family: var(--font-sans);
-  overflow: hidden;           /* keeps the cone clipped inside */
-  transition: color 0.2s ease;
+  overflow: hidden;
+  transition: color 0.22s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Icon and label turn white when active */
 .nav-btn.is-active {
   color: #ffffff;
 }
 
-/* Wrapper that layoutId animates between items */
-.nav-btn__light-wrap {
+/* Dark pill background — fades in behind active item */
+.nav-btn__bg {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
+  border-radius: 16px;
+  background: rgba(30, 30, 46, 0.88);
   pointer-events: none;
   z-index: 0;
 }
 
-/* ── The white LED bar at the very top ── */
+/* ── White LED bar pinned to the top edge ── */
 .nav-btn__bar {
   position: absolute;
   top: 0;
-  left: 20%;
-  right: 20%;
-  height: 3px;
-  border-radius: 0 0 4px 4px;
+  left: 22%;
+  right: 22%;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
   background: #ffffff;
+  pointer-events: none;
+  z-index: 3;
   box-shadow:
-    0 0 6px 3px rgba(255, 255, 255, 0.95),
-    0 0 18px 6px rgba(255, 255, 255, 0.55),
-    0 0 40px 10px rgba(255, 255, 255, 0.2);
+    0 0  6px 2px rgba(255, 255, 255, 1),
+    0 0 16px 5px rgba(255, 255, 255, 0.7),
+    0 0 36px 8px rgba(255, 255, 255, 0.3);
+  transform-origin: center top;
 }
 
-/* ── Cone of reflected light beneath the bar ── */
+/* ── Cone of light spreading downward ── */
 .nav-btn__cone {
   position: absolute;
-  top: 3px;
+  top: 4px;
   left: 0;
   right: 0;
   bottom: 0;
-  /* Triangle / cone shape */
-  clip-path: polygon(28% 0%, 72% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
+  z-index: 1;
+  clip-path: polygon(26% 0%, 74% 0%, 100% 100%, 0% 100%);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(255, 255, 255, 0.10) 30%,
-    rgba(255, 255, 255, 0.04) 60%,
-    transparent 100%
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.12) 35%,
+    rgba(255, 255, 255, 0.04) 65%,
+    rgba(255, 255, 255, 0)   100%
   );
 }
 
 /* Icon */
 .nav-btn__icon {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   font-size: 1.25rem;
   display: flex;
   align-items: center;
@@ -389,16 +396,16 @@ button {
   line-height: 1;
 }
 
-/* Label — only visible when active */
+/* Label — fades in when active */
 .nav-btn__label {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   font-size: 0.58rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1;
 }
 
