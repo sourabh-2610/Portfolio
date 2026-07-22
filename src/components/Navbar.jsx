@@ -97,14 +97,8 @@ export default function Navbar() {
                     >
                       <link.Icon />
                     </motion.span>
-                    {/* label */}
-                    <motion.span
-                      className="nav-btn__label"
-                      animate={on ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
-                      transition={{ duration: 0.18 }}
-                    >
-                      {link.label}
-                    </motion.span>
+                    {/* label — always visible */}
+                    <span className="nav-btn__label">{link.label}</span>
                   </button>
                 </motion.li>
               )
@@ -153,9 +147,7 @@ export default function Navbar() {
               <motion.span className="nav-btn__icon" animate={on ? { y: -2, scale: 1.15 } : { y: 0, scale: 1 }} transition={{ type: 'spring', stiffness: 440, damping: 26 }}>
                 <link.Icon />
               </motion.span>
-              <motion.span className="nav-btn__label" animate={on ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }} transition={{ duration: 0.18 }}>
-                {link.label}
-              </motion.span>
+              <span className="nav-btn__label">{link.label}</span>
             </button>
           )
         })}

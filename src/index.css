@@ -318,9 +318,9 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  padding: 10px 20px;
-  min-width: 68px;
+  gap: 4px;
+  padding: 8px 16px;
+  min-width: 64px;
   min-height: 56px;
   border-radius: 16px;
   background: transparent;
@@ -333,7 +333,7 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Icon and label turn white when active */
+/* Active button — icon + label go white */
 .nav-btn.is-active {
   color: #ffffff;
 }
@@ -389,24 +389,26 @@ button {
 .nav-btn__icon {
   position: relative;
   z-index: 2;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
 }
 
-/* Label — fades in when active */
+/* Label — ALWAYS VISIBLE, just dimmer when inactive */
 .nav-btn__label {
   position: relative;
   z-index: 2;
-  font-size: 0.58rem;
+  font-size: 0.55rem;
   font-weight: 700;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.9);
+  /* inactive: dim text colour; active: white (inherited from .is-active) */
+  color: inherit;
   line-height: 1;
+  opacity: 1 !important;   /* always show — never hidden */
 }
 
 
@@ -471,28 +473,44 @@ button {
 .bottom-nav {
   display: none;
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 16px;
+  /* Stretch to fit all 5 icons on any screen */
+  left: 12px;
+  right: 12px;
+  width: auto;
+  transform: none;
   z-index: 1000;
   background: var(--surface-gradient-soft);
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 10px 16px;
-  gap: 4px;
+  padding: 8px 6px;
+  gap: 2px;
   box-shadow:
     var(--neo-shadow-soft),
     0 16px 48px rgba(0, 0, 0, 0.22),
     0 0 0 1px rgba(255, 255, 255, 0.04) inset;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  justify-content: space-around;  /* evenly space all 5 */
 }
 
-/* nav-btn inside .bottom-nav gets a slightly rounder pill shape */
+/* Smaller buttons inside bottom nav so they all fit */
 .bottom-nav .nav-btn {
   border-radius: 999px;
-  padding: 8px 16px;
-  min-height: 54px;
+  padding: 6px 8px;
+  min-width: 0;
+  flex: 1;              /* each button takes equal space */
+  min-height: 52px;
+  max-width: 80px;
+}
+
+.bottom-nav .nav-btn__icon {
+  font-size: 1.15rem;
+}
+
+.bottom-nav .nav-btn__label {
+  font-size: 0.5rem;
+  letter-spacing: 0.3px;
 }
 
 
