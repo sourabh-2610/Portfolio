@@ -2,7 +2,8 @@
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0a0a0f;
+  --bg: transparent;          /* body is see-through — canvas shows underneath */
+  --bg-solid: #0a0a0f;        /* used on html element to fill the page */
   --bg-elevated: #12121a;
   --bg-card: #16161f;
   --bg-card-soft: #181827;
@@ -57,7 +58,8 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: #fafafa;
+  --bg: rgba(250, 250, 250, 0.92);  /* slightly transparent in light mode */
+  --bg-solid: #fafafa;
   --bg-elevated: #f0f0f3;
   --bg-card: #ffffff;
   --bg-card-soft: #f7f7fb;
@@ -119,14 +121,12 @@ html {
   max-width: 100%;
   overflow-x: clip;
   overscroll-behavior-x: none;
+  background: var(--bg-solid, #0a0a0f);   /* solid page backdrop */
 }
 
 body {
   font-family: var(--font-sans);
-  background:
-    radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.13), transparent 32%),
-    radial-gradient(circle at 90% 20%, rgba(139, 92, 246, 0.14), transparent 34%),
-    var(--bg);
+  background: var(--bg);         /* transparent in dark mode — canvas shows through */
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;

@@ -1,170 +1,164 @@
 /**
- * BackgroundAnimation.jsx
+ * BackgroundAnimation.jsx  —  "Ember & Smoke" edition
  *
  * ── HOW TO REMOVE ──────────────────────────────────────────────
  * 1. Delete this file
- * 2. In App.jsx, remove:
- *      import BackgroundAnimation from './components/BackgroundAnimation'
- *      <BackgroundAnimation />
+ * 2. In App.jsx remove the import line and <BackgroundAnimation />
  * ───────────────────────────────────────────────────────────────
  *
- * "Cosmic Aurora" — canvas animation with:
- *   • Flowing aurora ribbon waves (indigo / violet / cyan)
- *   • Drifting glowing orbs that pulse
- *   • Rare "energy pulse" rings that ripple outward
- *   • Subtle floating star-dust particles
+ * Colour palette: warm amber / deep rose / charcoal smoke
+ * — feels hand-crafted, editorial, nothing "AI blue"
+ *
+ * Layers (all on one canvas):
+ *   1. Slow-rolling smoke wisps (dark grey, almost invisible)
+ *   2. Ember orbs — warm amber / rose blobs that breathe
+ *   3. Fine cinder sparks — tiny motes drifting upward
+ *   4. Rare "heat shimmer" pulse ring from an ember
  */
 
 import { useEffect, useRef } from 'react'
 
-/* ── Helpers ── */
-const rand = (min, max) => Math.random() * (max - min) + min
-const randInt = (min, max) => Math.floor(rand(min, max))
-const TAU = Math.PI * 2
+const TAU   = Math.PI * 2
+const rand  = (a, b) => Math.random() * (b - a) + a
+const rInt  = (a, b) => Math.floor(rand(a, b))
 
-/* ── Palette (indigo / violet / cyan accent) ── */
-const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#06b6d4', '#818cf8', '#c084fc']
+/* ── Warm, organic palette — amber / rose / smoke ── */
+const EMBER_COLORS  = ['#f59e0b', '#d97706', '#ef4444', '#e11d48', '#fb923c']
+const SMOKE_COLORS  = ['#292524', '#1c1917', '#27272a']
 
-/* ── Config ── */
-const N_PARTICLES  = 90   // floating dust
-const N_ORBS       = 6    // glowing orbs
-const N_AURORA     = 4    // aurora ribbon layers
-const PULSE_EVERY  = 220  // frames between energy pulses
+const CFG = {
+  sparks   : 70,
+  orbs     : 5,
+  wisps    : 3,
+  pulseEvery: 260,   // frames between heat pulses
+}
 
-/* ───────────────────────────────────────────────────── */
-
-function makeParticle(w, h) {
+/* ── Factory fns ── */
+function makeSpark(w, h) {
   return {
-    x: rand(0, w), y: rand(0, h),
-    r: rand(0.5, 2.2),
-    vx: rand(-0.18, 0.18),
-    vy: rand(-0.4, -0.1),
-    alpha: rand(0.15, 0.65),
-    color: COLORS[randInt(0, COLORS.length)],
+    x: rand(0, w), y: rand(h * 0.3, h),
+    r: rand(0.4, 1.8),
+    vx: rand(-0.15, 0.15),
+    vy: rand(-0.6, -0.15),
+    alpha: rand(0.2, 0.7),
+    color: EMBER_COLORS[rInt(0, EMBER_COLORS.length)],
     phase: rand(0, TAU),
   }
 }
 
 function makeOrb(w, h) {
-  const color = COLORS[randInt(0, COLORS.length)]
+  const color = EMBER_COLORS[rInt(0, EMBER_COLORS.length)]
   return {
-    x: rand(w * 0.1, w * 0.9),
-    y: rand(h * 0.1, h * 0.9),
-    r: rand(60, 160),
-    vx: rand(-0.12, 0.12),
-    vy: rand(-0.08, 0.08),
+    x: rand(w * 0.08, w * 0.92),
+    y: rand(h * 0.1,  h * 0.9),
+    r: rand(70, 200),
+    vx: rand(-0.07, 0.07),
+    vy: rand(-0.05, 0.05),
     color,
-    pulse: 0,
-    pulseDir: 1,
-    alpha: rand(0.04, 0.11),
+    beat: rand(0, TAU),
+    beatSpd: rand(0.006, 0.014),
+    alpha: rand(0.045, 0.10),
   }
 }
 
-function makeAurora(w, h, index) {
-  const colors = [
-    ['#6366f1', '#8b5cf6'],
-    ['#06b6d4', '#6366f1'],
-    ['#a78bfa', '#ec4899'],
-    ['#818cf8', '#06b6d4'],
-  ]
+function makeWisp(w, h, index) {
+  const yZones = [0.12, 0.42, 0.72]
   return {
-    yBase: rand(0.1, 0.5) * h,
-    amplitude: rand(0.04, 0.1) * h,
-    freq: rand(0.0015, 0.004),
-    speed: rand(0.0004, 0.001) * (index % 2 === 0 ? 1 : -1),
-    thickness: rand(0.08, 0.18) * h,
-    colors: colors[index % colors.length],
-    alpha: rand(0.04, 0.09),
+    yBase: h * (yZones[index % yZones.length] + rand(-0.06, 0.06)),
+    amp  : rand(0.05, 0.12) * h,
+    freq : rand(0.0012, 0.003),
+    speed: rand(0.0003, 0.0007) * (index % 2 ? 1 : -1),
+    thick: rand(0.10, 0.20) * h,
+    color: SMOKE_COLORS[index % SMOKE_COLORS.length],
+    alpha: rand(0.018, 0.038),
     phase: rand(0, TAU),
   }
 }
 
 function makePulse(x, y) {
-  return { x, y, r: 0, maxR: rand(200, 420), alpha: 0.55, color: COLORS[randInt(0, COLORS.length)] }
+  return {
+    x, y,
+    r    : 0,
+    maxR : rand(160, 360),
+    alpha: 0.45,
+    color: EMBER_COLORS[rInt(0, EMBER_COLORS.length)],
+  }
 }
 
-/* ───────────────────────────────────────────────────── */
+/* ───────────────────────────────────────────────── */
 
 export default function BackgroundAnimation() {
-  const canvasRef = useRef(null)
+  const ref = useRef(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
+    const canvas = ref.current
     const ctx    = canvas.getContext('2d')
     let raf, frame = 0
-    let w, h
-
-    /* state */
-    let particles, orbs, auroras, pulses
+    let w, h, sparks, orbs, wisps, pulses
 
     function init() {
       w = canvas.width  = window.innerWidth
       h = canvas.height = window.innerHeight
-      particles = Array.from({ length: N_PARTICLES }, () => makeParticle(w, h))
-      orbs      = Array.from({ length: N_ORBS },      () => makeOrb(w, h))
-      auroras   = Array.from({ length: N_AURORA },    (_, i) => makeAurora(w, h, i))
-      pulses    = []
+      sparks = Array.from({ length: CFG.sparks  }, () => makeSpark(w, h))
+      orbs   = Array.from({ length: CFG.orbs    }, () => makeOrb(w, h))
+      wisps  = Array.from({ length: CFG.wisps   }, (_, i) => makeWisp(w, h, i))
+      pulses = []
     }
 
-    /* ── Draw aurora ribbons ── */
-    function drawAuroras(t) {
-      auroras.forEach(a => {
+    /* ── Smoke wisps ── */
+    function drawWisps(t) {
+      wisps.forEach(wsp => {
         ctx.save()
         ctx.beginPath()
+        ctx.moveTo(0, wsp.yBase)
 
-        /* top wave */
-        ctx.moveTo(0, a.yBase + Math.sin(a.phase + t * a.speed) * a.amplitude)
-        for (let x = 0; x <= w; x += 6) {
-          const wave =
-            Math.sin(x * a.freq + a.phase + t * a.speed) * a.amplitude +
-            Math.sin(x * a.freq * 2.1 + t * a.speed * 1.6 + 1) * a.amplitude * 0.35
-          ctx.lineTo(x, a.yBase + wave)
+        for (let x = 0; x <= w; x += 8) {
+          const y = wsp.yBase
+            + Math.sin(x * wsp.freq + wsp.phase + t * wsp.speed) * wsp.amp
+            + Math.sin(x * wsp.freq * 1.9 + t * wsp.speed * 1.5) * wsp.amp * 0.4
+          ctx.lineTo(x, y)
         }
-
-        /* bottom — thicker band downward */
-        for (let x = w; x >= 0; x -= 6) {
-          const wave =
-            Math.sin(x * a.freq + a.phase + t * a.speed) * a.amplitude +
-            Math.sin(x * a.freq * 2.1 + t * a.speed * 1.6 + 1) * a.amplitude * 0.35
-          ctx.lineTo(x, a.yBase + wave + a.thickness)
+        for (let x = w; x >= 0; x -= 8) {
+          const y = wsp.yBase
+            + Math.sin(x * wsp.freq + wsp.phase + t * wsp.speed) * wsp.amp
+            + Math.sin(x * wsp.freq * 1.9 + t * wsp.speed * 1.5) * wsp.amp * 0.4
+            + wsp.thick
+          ctx.lineTo(x, y)
         }
-
         ctx.closePath()
 
-        const grad = ctx.createLinearGradient(0, 0, w, 0)
-        grad.addColorStop(0,    a.colors[0] + '00')
-        grad.addColorStop(0.25, a.colors[0] + Math.round(a.alpha * 255).toString(16).padStart(2, '0'))
-        grad.addColorStop(0.5,  a.colors[1] + Math.round(a.alpha * 1.4 * 255).toString(16).padStart(2, '0'))
-        grad.addColorStop(0.75, a.colors[0] + Math.round(a.alpha * 255).toString(16).padStart(2, '0'))
-        grad.addColorStop(1,    a.colors[1] + '00')
+        // vertical gradient — solid smoke band
+        const g = ctx.createLinearGradient(0, wsp.yBase - wsp.amp, 0, wsp.yBase + wsp.thick + wsp.amp)
+        g.addColorStop(0,    wsp.color + '00')
+        g.addColorStop(0.35, wsp.color + Math.round(wsp.alpha * 255).toString(16).padStart(2,'0'))
+        g.addColorStop(0.65, wsp.color + Math.round(wsp.alpha * 255).toString(16).padStart(2,'0'))
+        g.addColorStop(1,    wsp.color + '00')
 
-        ctx.fillStyle = grad
+        ctx.fillStyle = g
         ctx.fill()
         ctx.restore()
       })
     }
 
-    /* ── Draw glowing orbs ── */
-    function drawOrbs(t) {
+    /* ── Ember orbs ── */
+    function drawOrbs() {
       orbs.forEach(orb => {
-        /* drift */
         orb.x += orb.vx
         orb.y += orb.vy
-        if (orb.x < -orb.r * 2) orb.x = w + orb.r
-        if (orb.x > w + orb.r * 2) orb.x = -orb.r
-        if (orb.y < -orb.r * 2) orb.y = h + orb.r
-        if (orb.y > h + orb.r * 2) orb.y = -orb.r
+        if (orb.x < -orb.r) orb.x = w + orb.r
+        if (orb.x > w + orb.r) orb.x = -orb.r
+        if (orb.y < -orb.r) orb.y = h + orb.r
+        if (orb.y > h + orb.r) orb.y = -orb.r
 
-        /* pulse radius */
-        orb.pulse += 0.012 * orb.pulseDir
-        if (orb.pulse > 1 || orb.pulse < 0) orb.pulseDir *= -1
-        const rNow = orb.r * (0.88 + 0.12 * orb.pulse)
+        orb.beat += orb.beatSpd
+        const rNow = orb.r * (0.9 + 0.1 * Math.sin(orb.beat))
 
         ctx.save()
         const g = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, rNow)
-        g.addColorStop(0,   orb.color + Math.round(orb.alpha * 2.5 * 255).toString(16).padStart(2, '0'))
-        g.addColorStop(0.5, orb.color + Math.round(orb.alpha * 1.2 * 255).toString(16).padStart(2, '0'))
-        g.addColorStop(1,   orb.color + '00')
+        const aHex = (v) => Math.round(v * 255).toString(16).padStart(2, '0')
+        g.addColorStop(0,    orb.color + aHex(orb.alpha * 2.8))
+        g.addColorStop(0.45, orb.color + aHex(orb.alpha * 1.3))
+        g.addColorStop(1,    orb.color + '00')
         ctx.fillStyle = g
         ctx.beginPath()
         ctx.arc(orb.x, orb.y, rNow, 0, TAU)
@@ -173,55 +167,55 @@ export default function BackgroundAnimation() {
       })
     }
 
-    /* ── Draw floating particles ── */
-    function drawParticles(t) {
-      particles.forEach(p => {
-        p.x += p.vx
-        p.y += p.vy
-        if (p.y < -6)   { p.y = h + 6; p.x = rand(0, w) }
-        if (p.x < -6)   p.x = w + 6
-        if (p.x > w + 6) p.x = -6
+    /* ── Cinder sparks ── */
+    function drawSparks(t) {
+      sparks.forEach(sp => {
+        sp.x += sp.vx
+        sp.y += sp.vy
+        if (sp.y < -8) { sp.y = h + 8; sp.x = rand(0, w) }
+        if (sp.x < -8) sp.x = w + 8
+        if (sp.x > w + 8) sp.x = -8
 
-        const flicker = p.alpha * (0.6 + 0.4 * Math.sin(t * 0.04 + p.phase))
-
+        const flicker = sp.alpha * (0.55 + 0.45 * Math.sin(t * 0.05 + sp.phase))
         ctx.save()
         ctx.globalAlpha = flicker
-        ctx.shadowBlur  = 8
-        ctx.shadowColor = p.color
-        ctx.fillStyle   = p.color
+        ctx.shadowBlur  = 10
+        ctx.shadowColor = sp.color
+        ctx.fillStyle   = sp.color
         ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, TAU)
+        ctx.arc(sp.x, sp.y, sp.r, 0, TAU)
         ctx.fill()
         ctx.restore()
       })
     }
 
-    /* ── Draw energy pulse rings ── */
+    /* ── Heat pulse rings ── */
     function drawPulses() {
       for (let i = pulses.length - 1; i >= 0; i--) {
         const p = pulses[i]
-        p.r    += 3.5
-        p.alpha -= 0.006
+        p.r    += 2.8
+        p.alpha -= 0.005
         if (p.alpha <= 0) { pulses.splice(i, 1); continue }
 
-        const lineW = Math.max(0.5, 2.5 * (1 - p.r / p.maxR))
+        const t    = p.r / p.maxR          // 0→1
+        const lw   = Math.max(0.4, 2 * (1 - t))
+        const aHex = Math.round(p.alpha * 255).toString(16).padStart(2, '0')
 
         ctx.save()
-        ctx.globalAlpha   = p.alpha
-        ctx.strokeStyle   = p.color
-        ctx.lineWidth     = lineW
-        ctx.shadowBlur    = 18
-        ctx.shadowColor   = p.color
+        ctx.globalAlpha = p.alpha
+        ctx.strokeStyle = p.color
+        ctx.lineWidth   = lw
+        ctx.shadowBlur  = 20
+        ctx.shadowColor = p.color
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, TAU)
         ctx.stroke()
 
-        /* inner ring */
-        if (p.r > 30) {
-          ctx.globalAlpha = p.alpha * 0.4
-          ctx.lineWidth   = lineW * 0.5
+        if (p.r > 40) {
+          ctx.globalAlpha = p.alpha * 0.35
+          ctx.lineWidth   = lw * 0.5
           ctx.beginPath()
-          ctx.arc(p.x, p.y, p.r - 22, 0, TAU)
+          ctx.arc(p.x, p.y, p.r - 18, 0, TAU)
           ctx.stroke()
         }
         ctx.restore()
@@ -233,14 +227,13 @@ export default function BackgroundAnimation() {
       frame++
       ctx.clearRect(0, 0, w, h)
 
-      drawAuroras(frame)
-      drawOrbs(frame)
-      drawParticles(frame)
+      drawWisps(frame)
+      drawOrbs()
+      drawSparks(frame)
       drawPulses()
 
-      /* spawn new pulse occasionally */
-      if (frame % PULSE_EVERY === 0) {
-        const orb = orbs[randInt(0, orbs.length)]
+      if (frame % CFG.pulseEvery === 0) {
+        const orb = orbs[rInt(0, orbs.length)]
         pulses.push(makePulse(orb.x, orb.y))
       }
 
@@ -250,29 +243,22 @@ export default function BackgroundAnimation() {
     init()
     tick()
 
-    const onResize = () => {
-      init()
-      frame = 0
-    }
+    const onResize = () => { init(); frame = 0 }
     window.addEventListener('resize', onResize)
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', onResize)
-    }
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
   }, [])
 
   return (
     <canvas
-      ref={canvasRef}
+      ref={ref}
       aria-hidden="true"
       style={{
         position: 'fixed',
         inset: 0,
-        width: '100%',
+        width:  '100%',
         height: '100%',
         pointerEvents: 'none',
-        zIndex: 0,
-        opacity: 1,
+        zIndex: -1,           // ← behind everything including body bg
       }}
     />
   )
