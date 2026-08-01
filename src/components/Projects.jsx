@@ -57,6 +57,19 @@ const projects = [
     live: '#',
     github: '#',
   },
+  {
+    id: 5,
+    title: 'AI Chat Bot',
+    description:
+      'Intelligent conversational AI assistant powered by LLMs with context memory, multi-turn dialogue, and a sleek real-time UI.',
+    tags: ['Python', 'FastAPI', 'LangChain', 'React'],
+    accent: '#a855f7',
+    size: 'medium',
+    year: '2024',
+    category: 'AI / ML',
+    live: '#',
+    github: '#',
+  },
 ]
 
 function ProjectCard({ project, index }) {
