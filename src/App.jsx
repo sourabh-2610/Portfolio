@@ -7,10 +7,12 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import SplashCursor from './components/SplashCursor'
+import BackgroundAnimation from './components/BackgroundAnimation'
 
 export default function App() {
   return (
     <ThemeProvider>
+      <BackgroundAnimation />
       <SplashCursor
         RAINBOW_MODE={false}
         COLOR="#8b5cf6"
