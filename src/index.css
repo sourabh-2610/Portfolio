@@ -139,6 +139,8 @@ body {
 }
 
 #root {
+  position: relative;
+  z-index: 1;            /* sits above the canvas at z-index:0 */
   width: 100%;
   max-width: 100%;
   overflow-x: clip;
