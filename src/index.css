@@ -105,6 +105,124 @@
     0 0 34px rgba(5, 150, 105, 0.18);
 }
 
+/* ===== Background Gradient Glow Animation ===== */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.bg-glow__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+}
+
+/* Orb 1 — large emerald, top-left drift */
+.bg-glow__orb--1 {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+  top: -15%; left: -5%;
+  animation: glow-drift-1 24s ease-in-out infinite alternate;
+}
+
+/* Orb 2 — warm gold, top-right orbit */
+.bg-glow__orb--2 {
+  width: 550px; height: 550px;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.20) 0%, transparent 70%);
+  top: 5%; right: -10%;
+  animation: glow-drift-2 20s ease-in-out infinite alternate;
+}
+
+/* Orb 3 — teal, center-left */
+.bg-glow__orb--3 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, transparent 70%);
+  top: 35%; left: 10%;
+  animation: glow-drift-3 28s ease-in-out infinite alternate;
+}
+
+/* Orb 4 — amber, bottom-right */
+.bg-glow__orb--4 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+  bottom: -5%; right: 15%;
+  animation: glow-drift-4 22s ease-in-out infinite alternate;
+}
+
+/* Orb 5 — mint, center */
+.bg-glow__orb--5 {
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.10) 0%, transparent 70%);
+  top: 25%; left: 30%;
+  animation: glow-drift-5 30s ease-in-out infinite alternate;
+}
+
+/* Orb 6 — rose-gold, bottom-left accent */
+.bg-glow__orb--6 {
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.14) 0%, transparent 70%);
+  bottom: 10%; left: -8%;
+  animation: glow-drift-6 18s ease-in-out infinite alternate;
+}
+
+/* ── Keyframes — organic drifting paths ── */
+@keyframes glow-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(12vw, 8vh) scale(1.15); }
+  66%  { transform: translate(5vw, 18vh) scale(0.9); }
+  100% { transform: translate(18vw, 5vh) scale(1.05); }
+}
+
+@keyframes glow-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-15vw, 12vh) scale(1.1); }
+  66%  { transform: translate(-8vw, 22vh) scale(0.95); }
+  100% { transform: translate(-20vw, 8vh) scale(1.08); }
+}
+
+@keyframes glow-drift-3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(10vw, -8vh) scale(1.12); }
+  50%  { transform: translate(20vw, 5vh) scale(0.88); }
+  75%  { transform: translate(8vw, 15vh) scale(1.05); }
+  100% { transform: translate(-5vw, 10vh) scale(1.1); }
+}
+
+@keyframes glow-drift-4 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-18vw, -12vh) scale(1.2); }
+  100% { transform: translate(-10vw, -20vh) scale(0.95); }
+}
+
+@keyframes glow-drift-5 {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-8vw, 10vh) scale(1.08); }
+  66%  { transform: translate(10vw, -5vh) scale(0.92); }
+  100% { transform: translate(5vw, 8vh) scale(1.12); }
+}
+
+@keyframes glow-drift-6 {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50%  { transform: translate(15vw, -10vh) scale(1.15) rotate(20deg); }
+  100% { transform: translate(22vw, 5vh) scale(0.9) rotate(-10deg); }
+}
+
+/* On mobile: reduce blob sizes */
+@media (max-width: 768px) {
+  .bg-glow__orb--1 { width: 400px; height: 400px; }
+  .bg-glow__orb--2 { width: 350px; height: 350px; }
+  .bg-glow__orb--3 { width: 380px; height: 380px; }
+  .bg-glow__orb--4 { width: 300px; height: 300px; }
+  .bg-glow__orb--5 { width: 450px; height: 450px; }
+  .bg-glow__orb--6 { width: 280px; height: 280px; }
+  .bg-glow__orb { filter: blur(70px); }
+}
+
 /* ===== Reset & Base ===== */
 *,
 *::before,
