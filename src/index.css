@@ -1,54 +1,54 @@
-/* ===== CSS Variables ===== */
+/* ===== CSS Variables — "Obsidian" Palette ===== */
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: transparent;          /* body is see-through — canvas shows underneath */
-  --bg-solid: #0a0f0d;        /* used on html element to fill the page */
-  --bg-elevated: #0f1512;
-  --bg-card: #131a16;
-  --bg-card-soft: #151d18;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(16, 185, 129, 0.35);
-  --text: #e4e4e7;
-  --text-muted: #71717a;
+  --bg: transparent;
+  --bg-solid: #09090b;
+  --bg-elevated: #18181b;
+  --bg-card: #1c1c20;
+  --bg-card-soft: #202024;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(245, 158, 11, 0.4);
+  --text: #fafaf9;
+  --text-muted: #a1a1aa;
   --text-dim: #52525b;
-  --accent: #10b981;
-  --accent-light: #34d399;
-  --accent-glow: rgba(16, 185, 129, 0.25);
-  --navbar-bg: rgba(10, 10, 15, 0.85);
-  --overlay-bg: rgba(10, 10, 15, 0.7);
-  --mobile-menu-bg: rgba(10, 10, 15, 0.97);
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --accent-glow: rgba(245, 158, 11, 0.2);
+  --navbar-bg: rgba(9, 9, 11, 0.88);
+  --overlay-bg: rgba(9, 9, 11, 0.7);
+  --mobile-menu-bg: rgba(9, 9, 11, 0.97);
   --grid-line: rgba(255, 255, 255, 0.02);
-  --card-shadow: rgba(0, 0, 0, 0.3);
-  --hero-orb-2: #d4a574;
-  --ring-color: rgba(16, 185, 129, 0.3);
-  --tag-bg: rgba(16, 185, 129, 0.1);
-  --btn-text: #fff;
-  --neo-light: rgba(255, 255, 255, 0.08);
-  --neo-dark: rgba(0, 0, 0, 0.62);
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --hero-orb-2: #d97706;
+  --ring-color: rgba(245, 158, 11, 0.25);
+  --tag-bg: rgba(245, 158, 11, 0.08);
+  --btn-text: #09090b;
+  --neo-light: rgba(255, 255, 255, 0.06);
+  --neo-dark: rgba(0, 0, 0, 0.65);
   --neo-shadow: 16px 16px 36px var(--neo-dark), -10px -10px 28px var(--neo-light);
-  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.42), -8px -8px 20px rgba(255, 255, 255, 0.045);
-  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.42), -5px -5px 14px rgba(255, 255, 255, 0.055);
-  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.5), inset -6px -6px 14px rgba(255, 255, 255, 0.055);
-  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.38), inset -4px -4px 10px rgba(255, 255, 255, 0.045);
-  --neo-glow: 0 0 42px rgba(16, 185, 129, 0.18);
-  --surface-gradient: linear-gradient(145deg, rgba(20, 30, 24, 0.96), rgba(10, 15, 12, 0.96));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(18, 28, 22, 0.94), rgba(10, 14, 11, 0.94));
-  --goo-pill-bg: rgba(245, 245, 255, 0.94);
-  --goo-pill-text: #0b0b12;
-  --goo-blue: #059669;
-  --goo-pink: #d4a574;
+  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.5), -8px -8px 20px rgba(255, 255, 255, 0.03);
+  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.45), -5px -5px 14px rgba(255, 255, 255, 0.04);
+  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.5), inset -6px -6px 14px rgba(255, 255, 255, 0.04);
+  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.4), inset -4px -4px 10px rgba(255, 255, 255, 0.035);
+  --neo-glow: 0 0 40px rgba(245, 158, 11, 0.12);
+  --surface-gradient: linear-gradient(145deg, rgba(30, 30, 34, 0.96), rgba(14, 14, 16, 0.96));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(26, 26, 30, 0.94), rgba(12, 12, 14, 0.94));
+  --goo-pill-bg: rgba(250, 250, 249, 0.94);
+  --goo-pill-text: #09090b;
+  --goo-blue: #f59e0b;
+  --goo-pink: #d97706;
   --skill-rim-shadow:
-    inset 13px 13px 24px rgba(0, 0, 0, 0.54),
-    inset -12px -12px 22px rgba(255, 255, 255, 0.16),
-    12px 12px 30px rgba(0, 0, 0, 0.44),
-    -8px -8px 24px rgba(255, 255, 255, 0.045);
+    inset 13px 13px 24px rgba(0, 0, 0, 0.55),
+    inset -12px -12px 22px rgba(255, 255, 255, 0.12),
+    12px 12px 30px rgba(0, 0, 0, 0.48),
+    -8px -8px 24px rgba(255, 255, 255, 0.035);
   --skill-rim-hover:
-    inset 16px 16px 26px rgba(0, 0, 0, 0.58),
-    inset -14px -14px 24px rgba(255, 255, 255, 0.19),
-    0 0 36px rgba(16, 185, 129, 0.24);
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Playfair Display', Georgia, serif;
+    inset 16px 16px 26px rgba(0, 0, 0, 0.6),
+    inset -14px -14px 24px rgba(255, 255, 255, 0.15),
+    0 0 36px rgba(245, 158, 11, 0.18);
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-display: 'Sora', system-ui, sans-serif;
   --radius: 12px;
   --radius-lg: 20px;
   --transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -58,51 +58,51 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: rgba(250, 250, 250, 0.92);  /* slightly transparent in light mode */
-  --bg-solid: #fafafa;
-  --bg-elevated: #f0f0f3;
+  --bg: rgba(252, 252, 250, 0.92);
+  --bg-solid: #fcfcfa;
+  --bg-elevated: #f5f5f0;
   --bg-card: #ffffff;
-  --bg-card-soft: #f7f7fb;
+  --bg-card-soft: #fafaf5;
   --border: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(16, 185, 129, 0.45);
-  --text: #18181b;
-  --text-muted: #52525b;
-  --text-dim: #a1a1aa;
-  --accent: #059669;
-  --accent-light: #10b981;
-  --accent-glow: rgba(5, 150, 105, 0.15);
-  --navbar-bg: rgba(250, 250, 250, 0.88);
-  --overlay-bg: rgba(250, 250, 250, 0.75);
-  --mobile-menu-bg: rgba(250, 250, 250, 0.98);
+  --border-hover: rgba(217, 119, 6, 0.45);
+  --text: #1c1917;
+  --text-muted: #57534e;
+  --text-dim: #a8a29e;
+  --accent: #d97706;
+  --accent-light: #f59e0b;
+  --accent-glow: rgba(217, 119, 6, 0.15);
+  --navbar-bg: rgba(252, 252, 250, 0.88);
+  --overlay-bg: rgba(252, 252, 250, 0.75);
+  --mobile-menu-bg: rgba(252, 252, 250, 0.98);
   --grid-line: rgba(0, 0, 0, 0.04);
-  --card-shadow: rgba(0, 0, 0, 0.08);
-  --hero-orb-2: #d4a574;
-  --ring-color: rgba(16, 185, 129, 0.25);
-  --tag-bg: rgba(16, 185, 129, 0.08);
+  --card-shadow: rgba(0, 0, 0, 0.06);
+  --hero-orb-2: #b45309;
+  --ring-color: rgba(217, 119, 6, 0.25);
+  --tag-bg: rgba(217, 119, 6, 0.08);
   --btn-text: #fff;
-  --neo-light: rgba(255, 255, 255, 0.95);
-  --neo-dark: rgba(163, 171, 189, 0.36);
-  --neo-shadow: 18px 18px 36px rgba(169, 178, 196, 0.32), -14px -14px 30px rgba(255, 255, 255, 0.92);
-  --neo-shadow-soft: 10px 10px 24px rgba(169, 178, 196, 0.24), -8px -8px 20px rgba(255, 255, 255, 0.9);
-  --neo-shadow-small: 7px 7px 15px rgba(169, 178, 196, 0.26), -6px -6px 14px rgba(255, 255, 255, 0.92);
-  --neo-inset: inset 8px 8px 16px rgba(169, 178, 196, 0.24), inset -8px -8px 16px rgba(255, 255, 255, 0.9);
-  --neo-inset-soft: inset 5px 5px 12px rgba(169, 178, 196, 0.2), inset -5px -5px 12px rgba(255, 255, 255, 0.92);
-  --neo-glow: 0 0 42px rgba(16, 185, 129, 0.14);
-  --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(232, 234, 242, 0.98));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(238, 240, 247, 0.95));
+  --neo-light: rgba(255, 255, 255, 0.96);
+  --neo-dark: rgba(168, 162, 158, 0.28);
+  --neo-shadow: 18px 18px 36px rgba(168, 162, 158, 0.28), -14px -14px 30px rgba(255, 255, 255, 0.94);
+  --neo-shadow-soft: 10px 10px 24px rgba(168, 162, 158, 0.2), -8px -8px 20px rgba(255, 255, 255, 0.92);
+  --neo-shadow-small: 7px 7px 15px rgba(168, 162, 158, 0.22), -6px -6px 14px rgba(255, 255, 255, 0.94);
+  --neo-inset: inset 8px 8px 16px rgba(168, 162, 158, 0.2), inset -8px -8px 16px rgba(255, 255, 255, 0.92);
+  --neo-inset-soft: inset 5px 5px 12px rgba(168, 162, 158, 0.16), inset -5px -5px 12px rgba(255, 255, 255, 0.94);
+  --neo-glow: 0 0 40px rgba(217, 119, 6, 0.12);
+  --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 245, 240, 0.98));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 243, 0.95));
   --goo-pill-bg: rgba(255, 255, 255, 0.98);
-  --goo-pill-text: #171721;
-  --goo-blue: #059669;
-  --goo-pink: #d946ef;
+  --goo-pill-text: #1c1917;
+  --goo-blue: #d97706;
+  --goo-pink: #ea580c;
   --skill-rim-shadow:
-    inset 13px 13px 24px rgba(121, 128, 145, 0.34),
+    inset 13px 13px 24px rgba(120, 113, 108, 0.3),
     inset -13px -13px 24px rgba(255, 255, 255, 0.98),
-    12px 12px 28px rgba(164, 172, 190, 0.34),
-    -9px -9px 24px rgba(255, 255, 255, 0.9);
+    12px 12px 28px rgba(168, 162, 158, 0.28),
+    -9px -9px 24px rgba(255, 255, 255, 0.92);
   --skill-rim-hover:
-    inset 15px 15px 28px rgba(109, 116, 132, 0.38),
+    inset 15px 15px 28px rgba(120, 113, 108, 0.34),
     inset -15px -15px 28px rgba(255, 255, 255, 1),
-    0 0 34px rgba(5, 150, 105, 0.18);
+    0 0 34px rgba(217, 119, 6, 0.16);
 }
 
 /* ===== Background Gradient Glow Animation ===== */
@@ -122,50 +122,50 @@
   will-change: transform;
 }
 
-/* Orb 1 — large emerald, top-left drift */
+/* Orb 1 — amber, top-left drift */
 .bg-glow__orb--1 {
   width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, transparent 70%);
   top: -15%; left: -5%;
   animation: glow-drift-1 24s ease-in-out infinite alternate;
 }
 
-/* Orb 2 — warm gold, top-right orbit */
+/* Orb 2 — deep amber, top-right orbit */
 .bg-glow__orb--2 {
   width: 550px; height: 550px;
-  background: radial-gradient(circle, rgba(212, 165, 116, 0.20) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, transparent 70%);
   top: 5%; right: -10%;
   animation: glow-drift-2 20s ease-in-out infinite alternate;
 }
 
-/* Orb 3 — teal, center-left */
+/* Orb 3 — golden, center-left */
 .bg-glow__orb--3 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.12) 0%, transparent 70%);
   top: 35%; left: 10%;
   animation: glow-drift-3 28s ease-in-out infinite alternate;
 }
 
-/* Orb 4 — amber, bottom-right */
+/* Orb 4 — warm orange, bottom-right */
 .bg-glow__orb--4 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.10) 0%, transparent 70%);
   bottom: -5%; right: 15%;
   animation: glow-drift-4 22s ease-in-out infinite alternate;
 }
 
-/* Orb 5 — mint, center */
+/* Orb 5 — pale gold, center */
 .bg-glow__orb--5 {
   width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(52, 211, 153, 0.10) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(253, 224, 71, 0.08) 0%, transparent 70%);
   top: 25%; left: 30%;
   animation: glow-drift-5 30s ease-in-out infinite alternate;
 }
 
-/* Orb 6 — rose-gold, bottom-left accent */
+/* Orb 6 — amber, bottom-left accent */
 .bg-glow__orb--6 {
   width: 450px; height: 450px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.14) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
   bottom: 10%; left: -8%;
   animation: glow-drift-6 18s ease-in-out infinite alternate;
 }
@@ -331,7 +331,7 @@ button {
 }
 
 .btn--primary:hover {
-  background: linear-gradient(145deg, #6ee7b7, var(--accent));
+  background: linear-gradient(145deg, #d4a574, var(--accent));
   transform: translateY(-2px);
 }
 
@@ -706,7 +706,7 @@ button {
 }
 
 .hero__name-accent {
-  background: linear-gradient(135deg, var(--accent-light), #10b981, #d4a574);
+  background: linear-gradient(135deg, var(--accent-light), #f59e0b, #d97706);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -800,7 +800,7 @@ button {
   font-family: var(--font-display);
   font-size: 4rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent), #d4a574);
+  background: linear-gradient(135deg, var(--accent), #a07553);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -865,7 +865,7 @@ button {
 /* ===== Skills ===== */
 .skills {
   background:
-    linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.035), transparent),
+    linear-gradient(180deg, transparent, rgba(245, 158, 11, 0.03), transparent),
     var(--bg-elevated);
 }
 
@@ -896,7 +896,7 @@ button {
 .skill-card__icon {
   font-size: 2.2rem;
   transition: transform var(--transition);
-  filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.22));
+  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.22));
 }
 
 .skill-card:hover .skill-card__icon {
@@ -1147,7 +1147,7 @@ button {
 /* ===== Contact ===== */
 .contact {
   background:
-    radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.08), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.08), transparent 28%),
     var(--bg-elevated);
 }
 

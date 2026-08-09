@@ -15,7 +15,7 @@ export default function App() {
       <BackgroundAnimation />
       <SplashCursor
         RAINBOW_MODE={false}
-        COLOR="#10b981"
+        COLOR="#f59e0b"
         SIM_RESOLUTION={128}
         DYE_RESOLUTION={1440}
         DENSITY_DISSIPATION={3.5}
