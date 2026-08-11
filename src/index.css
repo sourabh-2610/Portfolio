@@ -1,54 +1,54 @@
-/* ===== CSS Variables — "Obsidian" Palette ===== */
+﻿/* ===== CSS Variables â€” "Midnight Luxe" Palette ===== */
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
   --bg: transparent;
-  --bg-solid: #09090b;
-  --bg-elevated: #18181b;
-  --bg-card: #1c1c20;
-  --bg-card-soft: #202024;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(245, 158, 11, 0.4);
-  --text: #fafaf9;
-  --text-muted: #a1a1aa;
-  --text-dim: #52525b;
-  --accent: #f59e0b;
-  --accent-light: #fbbf24;
-  --accent-glow: rgba(245, 158, 11, 0.2);
-  --navbar-bg: rgba(9, 9, 11, 0.88);
-  --overlay-bg: rgba(9, 9, 11, 0.7);
-  --mobile-menu-bg: rgba(9, 9, 11, 0.97);
+  --bg-solid: #0a0e1a;
+  --bg-elevated: #111827;
+  --bg-card: #151c2e;
+  --bg-card-soft: #182035;
+  --border: rgba(232, 168, 124, 0.08);
+  --border-hover: rgba(232, 168, 124, 0.35);
+  --text: #f5f0eb;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent: #e8a87c;
+  --accent-light: #f0c4a8;
+  --accent-glow: rgba(232, 168, 124, 0.2);
+  --navbar-bg: rgba(10, 14, 26, 0.88);
+  --overlay-bg: rgba(10, 14, 26, 0.7);
+  --mobile-menu-bg: rgba(10, 14, 26, 0.97);
   --grid-line: rgba(255, 255, 255, 0.02);
   --card-shadow: rgba(0, 0, 0, 0.4);
-  --hero-orb-2: #d97706;
-  --ring-color: rgba(245, 158, 11, 0.25);
-  --tag-bg: rgba(245, 158, 11, 0.08);
-  --btn-text: #09090b;
-  --neo-light: rgba(255, 255, 255, 0.06);
-  --neo-dark: rgba(0, 0, 0, 0.65);
+  --hero-orb-2: #c88a6a;
+  --ring-color: rgba(232, 168, 124, 0.25);
+  --tag-bg: rgba(232, 168, 124, 0.08);
+  --btn-text: #0a0e1a;
+  --neo-light: rgba(255, 255, 255, 0.05);
+  --neo-dark: rgba(0, 0, 0, 0.6);
   --neo-shadow: 16px 16px 36px var(--neo-dark), -10px -10px 28px var(--neo-light);
-  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.5), -8px -8px 20px rgba(255, 255, 255, 0.03);
-  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.45), -5px -5px 14px rgba(255, 255, 255, 0.04);
-  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.5), inset -6px -6px 14px rgba(255, 255, 255, 0.04);
-  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.4), inset -4px -4px 10px rgba(255, 255, 255, 0.035);
-  --neo-glow: 0 0 40px rgba(245, 158, 11, 0.12);
-  --surface-gradient: linear-gradient(145deg, rgba(30, 30, 34, 0.96), rgba(14, 14, 16, 0.96));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(26, 26, 30, 0.94), rgba(12, 12, 14, 0.94));
-  --goo-pill-bg: rgba(250, 250, 249, 0.94);
-  --goo-pill-text: #09090b;
-  --goo-blue: #f59e0b;
-  --goo-pink: #d97706;
+  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.5), -8px -8px 20px rgba(255, 255, 255, 0.025);
+  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.45), -5px -5px 14px rgba(255, 255, 255, 0.03);
+  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.5), inset -6px -6px 14px rgba(255, 255, 255, 0.03);
+  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.4), inset -4px -4px 10px rgba(255, 255, 255, 0.025);
+  --neo-glow: 0 0 40px rgba(232, 168, 124, 0.12);
+  --surface-gradient: linear-gradient(145deg, rgba(21, 28, 46, 0.96), rgba(12, 16, 28, 0.96));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(18, 24, 40, 0.94), rgba(10, 14, 24, 0.94));
+  --goo-pill-bg: rgba(245, 240, 235, 0.94);
+  --goo-pill-text: #0a0e1a;
+  --goo-blue: #e8a87c;
+  --goo-pink: #c88a6a;
   --skill-rim-shadow:
     inset 13px 13px 24px rgba(0, 0, 0, 0.55),
-    inset -12px -12px 22px rgba(255, 255, 255, 0.12),
+    inset -12px -12px 22px rgba(255, 255, 255, 0.08),
     12px 12px 30px rgba(0, 0, 0, 0.48),
-    -8px -8px 24px rgba(255, 255, 255, 0.035);
+    -8px -8px 24px rgba(255, 255, 255, 0.025);
   --skill-rim-hover:
     inset 16px 16px 26px rgba(0, 0, 0, 0.6),
-    inset -14px -14px 24px rgba(255, 255, 255, 0.15),
-    0 0 36px rgba(245, 158, 11, 0.18);
-  --font-sans: 'Space Grotesk', system-ui, sans-serif;
-  --font-display: 'Sora', system-ui, sans-serif;
+    inset -14px -14px 24px rgba(255, 255, 255, 0.12),
+    0 0 36px rgba(232, 168, 124, 0.18);
+  --font-sans: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
   --radius: 12px;
   --radius-lg: 20px;
   --transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -58,52 +58,53 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: rgba(252, 252, 250, 0.92);
-  --bg-solid: #fcfcfa;
-  --bg-elevated: #f5f5f0;
+  --bg: rgba(252, 250, 248, 0.92);
+  --bg-solid: #fcfaf8;
+  --bg-elevated: #f5f0eb;
   --bg-card: #ffffff;
-  --bg-card-soft: #fafaf5;
+  --bg-card-soft: #faf7f4;
   --border: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(217, 119, 6, 0.45);
-  --text: #1c1917;
-  --text-muted: #57534e;
-  --text-dim: #a8a29e;
-  --accent: #d97706;
-  --accent-light: #f59e0b;
-  --accent-glow: rgba(217, 119, 6, 0.15);
-  --navbar-bg: rgba(252, 252, 250, 0.88);
-  --overlay-bg: rgba(252, 252, 250, 0.75);
-  --mobile-menu-bg: rgba(252, 252, 250, 0.98);
+  --border-hover: rgba(200, 138, 106, 0.45);
+  --text: #1e1b18;
+  --text-muted: #5c5347;
+  --text-dim: #a89b8f;
+  --accent: #c88a6a;
+  --accent-light: #e8a87c;
+  --accent-glow: rgba(200, 138, 106, 0.15);
+  --navbar-bg: rgba(252, 250, 248, 0.88);
+  --overlay-bg: rgba(252, 250, 248, 0.75);
+  --mobile-menu-bg: rgba(252, 250, 248, 0.98);
   --grid-line: rgba(0, 0, 0, 0.04);
   --card-shadow: rgba(0, 0, 0, 0.06);
-  --hero-orb-2: #b45309;
-  --ring-color: rgba(217, 119, 6, 0.25);
-  --tag-bg: rgba(217, 119, 6, 0.08);
+  --hero-orb-2: #a06b4f;
+  --ring-color: rgba(200, 138, 106, 0.25);
+  --tag-bg: rgba(200, 138, 106, 0.08);
   --btn-text: #fff;
   --neo-light: rgba(255, 255, 255, 0.96);
-  --neo-dark: rgba(168, 162, 158, 0.28);
-  --neo-shadow: 18px 18px 36px rgba(168, 162, 158, 0.28), -14px -14px 30px rgba(255, 255, 255, 0.94);
-  --neo-shadow-soft: 10px 10px 24px rgba(168, 162, 158, 0.2), -8px -8px 20px rgba(255, 255, 255, 0.92);
-  --neo-shadow-small: 7px 7px 15px rgba(168, 162, 158, 0.22), -6px -6px 14px rgba(255, 255, 255, 0.94);
-  --neo-inset: inset 8px 8px 16px rgba(168, 162, 158, 0.2), inset -8px -8px 16px rgba(255, 255, 255, 0.92);
-  --neo-inset-soft: inset 5px 5px 12px rgba(168, 162, 158, 0.16), inset -5px -5px 12px rgba(255, 255, 255, 0.94);
-  --neo-glow: 0 0 40px rgba(217, 119, 6, 0.12);
-  --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 245, 240, 0.98));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 248, 243, 0.95));
+  --neo-dark: rgba(160, 155, 143, 0.24);
+  --neo-shadow: 18px 18px 36px rgba(160, 155, 143, 0.24), -14px -14px 30px rgba(255, 255, 255, 0.94);
+  --neo-shadow-soft: 10px 10px 24px rgba(160, 155, 143, 0.18), -8px -8px 20px rgba(255, 255, 255, 0.92);
+  --neo-shadow-small: 7px 7px 15px rgba(160, 155, 143, 0.2), -6px -6px 14px rgba(255, 255, 255, 0.94);
+  --neo-inset: inset 8px 8px 16px rgba(160, 155, 143, 0.18), inset -8px -8px 16px rgba(255, 255, 255, 0.92);
+  --neo-inset-soft: inset 5px 5px 12px rgba(160, 155, 143, 0.14), inset -5px -5px 12px rgba(255, 255, 255, 0.94);
+  --neo-glow: 0 0 40px rgba(200, 138, 106, 0.12);
+  --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 240, 235, 0.98));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 244, 240, 0.95));
   --goo-pill-bg: rgba(255, 255, 255, 0.98);
-  --goo-pill-text: #1c1917;
-  --goo-blue: #d97706;
-  --goo-pink: #ea580c;
+  --goo-pill-text: #1e1b18;
+  --goo-blue: #c88a6a;
+  --goo-pink: #e07850;
   --skill-rim-shadow:
-    inset 13px 13px 24px rgba(120, 113, 108, 0.3),
+    inset 13px 13px 24px rgba(120, 113, 100, 0.26),
     inset -13px -13px 24px rgba(255, 255, 255, 0.98),
-    12px 12px 28px rgba(168, 162, 158, 0.28),
+    12px 12px 28px rgba(160, 155, 143, 0.24),
     -9px -9px 24px rgba(255, 255, 255, 0.92);
   --skill-rim-hover:
-    inset 15px 15px 28px rgba(120, 113, 108, 0.34),
+    inset 15px 15px 28px rgba(120, 113, 100, 0.3),
     inset -15px -15px 28px rgba(255, 255, 255, 1),
-    0 0 34px rgba(217, 119, 6, 0.16);
+    0 0 34px rgba(200, 138, 106, 0.16);
 }
+
 
 /* ===== Background Gradient Glow Animation ===== */
 .bg-glow {
@@ -122,55 +123,55 @@
   will-change: transform;
 }
 
-/* Orb 1 — amber, top-left drift */
+/* Orb 1 â€” amber, top-left drift */
 .bg-glow__orb--1 {
   width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232, 168, 124, 0.18) 0%, transparent 70%);
   top: -15%; left: -5%;
   animation: glow-drift-1 24s ease-in-out infinite alternate;
 }
 
-/* Orb 2 — deep amber, top-right orbit */
+/* Orb 2 â€” deep amber, top-right orbit */
 .bg-glow__orb--2 {
   width: 550px; height: 550px;
-  background: radial-gradient(circle, rgba(217, 119, 6, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 138, 106, 0.15) 0%, transparent 70%);
   top: 5%; right: -10%;
   animation: glow-drift-2 20s ease-in-out infinite alternate;
 }
 
-/* Orb 3 — golden, center-left */
+/* Orb 3 â€” golden, center-left */
 .bg-glow__orb--3 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(240, 196, 168, 0.12) 0%, transparent 70%);
   top: 35%; left: 10%;
   animation: glow-drift-3 28s ease-in-out infinite alternate;
 }
 
-/* Orb 4 — warm orange, bottom-right */
+/* Orb 4 â€” warm orange, bottom-right */
 .bg-glow__orb--4 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(234, 88, 12, 0.10) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(180, 120, 90, 0.10) 0%, transparent 70%);
   bottom: -5%; right: 15%;
   animation: glow-drift-4 22s ease-in-out infinite alternate;
 }
 
-/* Orb 5 — pale gold, center */
+/* Orb 5 â€” pale gold, center */
 .bg-glow__orb--5 {
   width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(253, 224, 71, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.08) 0%, transparent 70%);
   top: 25%; left: 30%;
   animation: glow-drift-5 30s ease-in-out infinite alternate;
 }
 
-/* Orb 6 — amber, bottom-left accent */
+/* Orb 6 â€” amber, bottom-left accent */
 .bg-glow__orb--6 {
   width: 450px; height: 450px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232, 168, 124, 0.12) 0%, transparent 70%);
   bottom: 10%; left: -8%;
   animation: glow-drift-6 18s ease-in-out infinite alternate;
 }
 
-/* ── Keyframes — organic drifting paths ── */
+/* â”€â”€ Keyframes â€” organic drifting paths â”€â”€ */
 @keyframes glow-drift-1 {
   0%   { transform: translate(0, 0) scale(1); }
   33%  { transform: translate(12vw, 8vh) scale(1.15); }
@@ -244,7 +245,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg);         /* transparent in dark mode — canvas shows through */
+  background: var(--bg);         /* transparent in dark mode â€” canvas shows through */
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
@@ -431,7 +432,7 @@ button {
   gap: 4px;
 }
 
-/* ── White-bar spotlight nav button ── */
+/* â”€â”€ White-bar spotlight nav button â”€â”€ */
 .nav-btn {
   position: relative;
   display: flex;
@@ -453,12 +454,12 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Active button — icon + label go white */
+/* Active button â€” icon + label go white */
 .nav-btn.is-active {
   color: #ffffff;
 }
 
-/* Dark pill background — fades in behind active item */
+/* Dark pill background â€” fades in behind active item */
 .nav-btn__bg {
   position: absolute;
   inset: 0;
@@ -468,7 +469,7 @@ button {
   z-index: 0;
 }
 
-/* ── White LED bar pinned to the top edge ── */
+/* â”€â”€ White LED bar pinned to the top edge â”€â”€ */
 .nav-btn__bar {
   position: absolute;
   top: 0;
@@ -486,7 +487,7 @@ button {
   transform-origin: center top;
 }
 
-/* ── Cone of light spreading downward ── */
+/* â”€â”€ Cone of light spreading downward â”€â”€ */
 .nav-btn__cone {
   position: absolute;
   top: 4px;
@@ -516,7 +517,7 @@ button {
   line-height: 1;
 }
 
-/* Label — ALWAYS VISIBLE, just dimmer when inactive */
+/* Label â€” ALWAYS VISIBLE, just dimmer when inactive */
 .nav-btn__label {
   position: relative;
   z-index: 2;
@@ -528,7 +529,7 @@ button {
   /* inactive: dim text colour; active: white (inherited from .is-active) */
   color: inherit;
   line-height: 1;
-  opacity: 1 !important;   /* always show — never hidden */
+  opacity: 1 !important;   /* always show â€” never hidden */
 }
 
 
@@ -706,7 +707,7 @@ button {
 }
 
 .hero__name-accent {
-  background: linear-gradient(135deg, var(--accent-light), #f59e0b, #d97706);
+  background: linear-gradient(135deg, var(--accent-light), #e8a87c, #c88a6a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -865,7 +866,7 @@ button {
 /* ===== Skills ===== */
 .skills {
   background:
-    linear-gradient(180deg, transparent, rgba(245, 158, 11, 0.03), transparent),
+    linear-gradient(180deg, transparent, rgba(232, 168, 124, 0.03), transparent),
     var(--bg-elevated);
 }
 
@@ -896,7 +897,7 @@ button {
 .skill-card__icon {
   font-size: 2.2rem;
   transition: transform var(--transition);
-  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.22));
+  filter: drop-shadow(0 0 12px rgba(232, 168, 124, 0.22));
 }
 
 .skill-card:hover .skill-card__icon {
@@ -909,7 +910,7 @@ button {
   color: var(--text-muted);
 }
 
-/* ===== Projects — Bento Magazine Layout ===== */
+/* ===== Projects â€” Bento Magazine Layout ===== */
 
 /* Bento grid: 2-col desktop, stacked mobile */
 .pj-grid {
@@ -943,11 +944,11 @@ button {
 }
 
 .pj-card:hover {
-  border-color: var(--accent, #f59e0b);
+  border-color: var(--accent, #e8a87c);
   transform: translateY(-6px) scale(1.012);
 }
 
-/* Accent bar — stretches from left on hover */
+/* Accent bar â€” stretches from left on hover */
 .pj-card__bar {
   position: absolute;
   top: 0;
@@ -955,12 +956,12 @@ button {
   right: 0;
   height: 3px;
   border-radius: 0 3px 3px 0;
-  background: var(--accent, #f59e0b);
+  background: var(--accent, #e8a87c);
   transform-origin: left center;
-  box-shadow: 0 0 18px 3px var(--accent, #f59e0b);
+  box-shadow: 0 0 18px 3px var(--accent, #e8a87c);
 }
 
-/* Index number — huge watermark */
+/* Index number â€” huge watermark */
 .pj-card__index {
   font-size: 4.5rem;
   font-weight: 900;
@@ -988,9 +989,9 @@ button {
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--accent, #f59e0b);
-  background: color-mix(in srgb, var(--accent, #f59e0b) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent, #f59e0b) 30%, transparent);
+  color: var(--accent, #e8a87c);
+  background: color-mix(in srgb, var(--accent, #e8a87c) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, #e8a87c) 30%, transparent);
   padding: 4px 12px;
   border-radius: 50px;
   width: fit-content;
@@ -1088,16 +1089,16 @@ button {
 }
 
 .pj-link--accent {
-  color: var(--accent, #f59e0b);
-  background: color-mix(in srgb, var(--accent, #f59e0b) 12%, transparent);
-  border-color: color-mix(in srgb, var(--accent, #f59e0b) 25%, transparent);
+  color: var(--accent, #e8a87c);
+  background: color-mix(in srgb, var(--accent, #e8a87c) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent, #e8a87c) 25%, transparent);
 }
 
 .pj-link--accent:hover {
-  background: var(--accent, #f59e0b);
+  background: var(--accent, #e8a87c);
   color: #000;
-  border-color: var(--accent, #f59e0b);
-  box-shadow: 0 0 20px var(--accent, #f59e0b);
+  border-color: var(--accent, #e8a87c);
+  box-shadow: 0 0 20px var(--accent, #e8a87c);
 }
 
 /* Hover glow overlay */
@@ -1108,7 +1109,7 @@ button {
   pointer-events: none;
   background: radial-gradient(
     circle at 50% 0%,
-    color-mix(in srgb, var(--accent, #f59e0b) 8%, transparent) 0%,
+    color-mix(in srgb, var(--accent, #e8a87c) 8%, transparent) 0%,
     transparent 65%
   );
 }
@@ -1123,12 +1124,12 @@ button {
   gap: 6px;
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--accent, #f59e0b);
+  color: var(--accent, #e8a87c);
   letter-spacing: 0.4px;
   pointer-events: none;
 }
 
-/* ── Responsive ── */
+/* â”€â”€ Responsive â”€â”€ */
 @media (max-width: 768px) {
   .pj-grid {
     grid-template-columns: 1fr;
@@ -1147,7 +1148,7 @@ button {
 /* ===== Contact ===== */
 .contact {
   background:
-    radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.08), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(232, 168, 124, 0.08), transparent 28%),
     var(--bg-elevated);
 }
 

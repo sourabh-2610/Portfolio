@@ -1,0 +1,38 @@
+.gradient-text-container {
+  position: relative;
+  display: inline-block;
+}
+
+.gradient-text-content {
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-sweep linear infinite;
+  display: inline-block;
+}
+
+.gradient-text-container.has-border {
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.gradient-border-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background-size: 300% 100%;
+  animation: gradient-sweep linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes gradient-sweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
