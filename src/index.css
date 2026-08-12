@@ -1,52 +1,53 @@
-/* ===== CSS Variables ===== */
+﻿/* ===== CSS Variables â€” 60/30/10 Rule ===== */
+/* 60% Charcoal Espresso | 30% Cream + Greige | 10% Vintage Rosewood */
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: transparent;          /* body is see-through — canvas shows underneath */
-  --bg-solid: #0a0a0f;        /* used on html element to fill the page */
-  --bg-elevated: #12121a;
-  --bg-card: #16161f;
-  --bg-card-soft: #181827;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(99, 102, 241, 0.35);
-  --text: #e4e4e7;
-  --text-muted: #71717a;
-  --text-dim: #52525b;
-  --accent: #6366f1;
-  --accent-light: #818cf8;
-  --accent-glow: rgba(99, 102, 241, 0.25);
-  --navbar-bg: rgba(10, 10, 15, 0.85);
-  --overlay-bg: rgba(10, 10, 15, 0.7);
-  --mobile-menu-bg: rgba(10, 10, 15, 0.97);
-  --grid-line: rgba(255, 255, 255, 0.02);
+  --bg: transparent;
+  --bg-solid: #2E2E2E;                        /* 60% â€” Charcoal Espresso */
+  --bg-elevated: #353535;
+  --bg-card: #3a3a3a;
+  --bg-card-soft: #3e3e3e;
+  --border: rgba(241, 236, 230, 0.08);
+  --border-hover: rgba(125, 64, 71, 0.4);
+  --text: #F1ECE6;                             /* 30% â€” Alabaster Cream */
+  --text-muted: #DDD5CD;                       /* 30% â€” Warm Greige */
+  --text-dim: #a09a93;
+  --accent: #7D4047;                           /* 10% â€” Vintage Rosewood */
+  --accent-light: #9a5560;
+  --accent-glow: rgba(125, 64, 71, 0.25);
+  --navbar-bg: rgba(46, 46, 46, 0.88);
+  --overlay-bg: rgba(46, 46, 46, 0.7);
+  --mobile-menu-bg: rgba(46, 46, 46, 0.97);
+  --grid-line: rgba(255, 255, 255, 0.03);
   --card-shadow: rgba(0, 0, 0, 0.3);
-  --hero-orb-2: #8b5cf6;
-  --ring-color: rgba(99, 102, 241, 0.3);
-  --tag-bg: rgba(99, 102, 241, 0.1);
-  --btn-text: #fff;
-  --neo-light: rgba(255, 255, 255, 0.08);
-  --neo-dark: rgba(0, 0, 0, 0.62);
+  --hero-orb-2: #9a5560;
+  --ring-color: rgba(125, 64, 71, 0.3);
+  --tag-bg: rgba(125, 64, 71, 0.12);
+  --btn-text: #F1ECE6;
+  --neo-light: rgba(255, 255, 255, 0.07);
+  --neo-dark: rgba(0, 0, 0, 0.45);
   --neo-shadow: 16px 16px 36px var(--neo-dark), -10px -10px 28px var(--neo-light);
-  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.42), -8px -8px 20px rgba(255, 255, 255, 0.045);
-  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.42), -5px -5px 14px rgba(255, 255, 255, 0.055);
-  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.5), inset -6px -6px 14px rgba(255, 255, 255, 0.055);
-  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.38), inset -4px -4px 10px rgba(255, 255, 255, 0.045);
-  --neo-glow: 0 0 42px rgba(99, 102, 241, 0.18);
-  --surface-gradient: linear-gradient(145deg, rgba(31, 31, 48, 0.96), rgba(14, 14, 23, 0.96));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(27, 27, 42, 0.94), rgba(12, 12, 20, 0.94));
-  --goo-pill-bg: rgba(245, 245, 255, 0.94);
-  --goo-pill-text: #0b0b12;
-  --goo-blue: #263cff;
-  --goo-pink: #ff4dff;
+  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.35), -8px -8px 20px rgba(255, 255, 255, 0.04);
+  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.35), -5px -5px 14px rgba(255, 255, 255, 0.05);
+  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.4), inset -6px -6px 14px rgba(255, 255, 255, 0.05);
+  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.3), inset -4px -4px 10px rgba(255, 255, 255, 0.04);
+  --neo-glow: 0 0 42px rgba(125, 64, 71, 0.18);
+  --surface-gradient: linear-gradient(145deg, rgba(62, 62, 62, 0.96), rgba(42, 42, 42, 0.96));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(58, 58, 58, 0.94), rgba(38, 38, 38, 0.94));
+  --goo-pill-bg: rgba(241, 236, 230, 0.94);
+  --goo-pill-text: #2E2E2E;
+  --goo-blue: #7D4047;
+  --goo-pink: #9a5560;
   --skill-rim-shadow:
-    inset 13px 13px 24px rgba(0, 0, 0, 0.54),
-    inset -12px -12px 22px rgba(255, 255, 255, 0.16),
-    12px 12px 30px rgba(0, 0, 0, 0.44),
-    -8px -8px 24px rgba(255, 255, 255, 0.045);
+    inset 13px 13px 24px rgba(0, 0, 0, 0.42),
+    inset -12px -12px 22px rgba(255, 255, 255, 0.12),
+    12px 12px 30px rgba(0, 0, 0, 0.36),
+    -8px -8px 24px rgba(255, 255, 255, 0.04);
   --skill-rim-hover:
-    inset 16px 16px 26px rgba(0, 0, 0, 0.58),
-    inset -14px -14px 24px rgba(255, 255, 255, 0.19),
-    0 0 36px rgba(99, 102, 241, 0.24);
+    inset 16px 16px 26px rgba(0, 0, 0, 0.48),
+    inset -14px -14px 24px rgba(255, 255, 255, 0.16),
+    0 0 36px rgba(125, 64, 71, 0.24);
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
   --radius: 12px;
@@ -58,52 +59,53 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: rgba(250, 250, 250, 0.92);  /* slightly transparent in light mode */
-  --bg-solid: #fafafa;
-  --bg-elevated: #f0f0f3;
+  --bg: rgba(241, 236, 230, 0.92);            /* 60% â€” Alabaster Cream */
+  --bg-solid: #F1ECE6;
+  --bg-elevated: #DDD5CD;                      /* 30% â€” Warm Greige */
   --bg-card: #ffffff;
-  --bg-card-soft: #f7f7fb;
-  --border: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(99, 102, 241, 0.45);
-  --text: #18181b;
-  --text-muted: #52525b;
-  --text-dim: #a1a1aa;
-  --accent: #4f46e5;
-  --accent-light: #6366f1;
-  --accent-glow: rgba(79, 70, 229, 0.15);
-  --navbar-bg: rgba(250, 250, 250, 0.88);
-  --overlay-bg: rgba(250, 250, 250, 0.75);
-  --mobile-menu-bg: rgba(250, 250, 250, 0.98);
-  --grid-line: rgba(0, 0, 0, 0.04);
-  --card-shadow: rgba(0, 0, 0, 0.08);
-  --hero-orb-2: #a78bfa;
-  --ring-color: rgba(99, 102, 241, 0.25);
-  --tag-bg: rgba(99, 102, 241, 0.08);
-  --btn-text: #fff;
-  --neo-light: rgba(255, 255, 255, 0.95);
-  --neo-dark: rgba(163, 171, 189, 0.36);
-  --neo-shadow: 18px 18px 36px rgba(169, 178, 196, 0.32), -14px -14px 30px rgba(255, 255, 255, 0.92);
-  --neo-shadow-soft: 10px 10px 24px rgba(169, 178, 196, 0.24), -8px -8px 20px rgba(255, 255, 255, 0.9);
-  --neo-shadow-small: 7px 7px 15px rgba(169, 178, 196, 0.26), -6px -6px 14px rgba(255, 255, 255, 0.92);
-  --neo-inset: inset 8px 8px 16px rgba(169, 178, 196, 0.24), inset -8px -8px 16px rgba(255, 255, 255, 0.9);
-  --neo-inset-soft: inset 5px 5px 12px rgba(169, 178, 196, 0.2), inset -5px -5px 12px rgba(255, 255, 255, 0.92);
-  --neo-glow: 0 0 42px rgba(99, 102, 241, 0.14);
-  --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(232, 234, 242, 0.98));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(238, 240, 247, 0.95));
+  --bg-card-soft: #f5f0ea;
+  --border: rgba(46, 46, 46, 0.1);
+  --border-hover: rgba(125, 64, 71, 0.45);
+  --text: #2E2E2E;                             /* Charcoal Espresso */
+  --text-muted: #4a4540;
+  --text-dim: #9a9490;
+  --accent: #7D4047;                           /* 10% â€” Vintage Rosewood */
+  --accent-light: #9a5560;
+  --accent-glow: rgba(125, 64, 71, 0.15);
+  --navbar-bg: rgba(241, 236, 230, 0.88);
+  --overlay-bg: rgba(241, 236, 230, 0.75);
+  --mobile-menu-bg: rgba(241, 236, 230, 0.98);
+  --grid-line: rgba(46, 46, 46, 0.05);
+  --card-shadow: rgba(0, 0, 0, 0.06);
+  --hero-orb-2: #7D4047;
+  --ring-color: rgba(125, 64, 71, 0.25);
+  --tag-bg: rgba(125, 64, 71, 0.08);
+  --btn-text: #F1ECE6;
+  --neo-light: rgba(255, 255, 255, 0.92);
+  --neo-dark: rgba(160, 150, 140, 0.3);
+  --neo-shadow: 18px 18px 36px rgba(160, 150, 140, 0.28), -14px -14px 30px rgba(255, 255, 255, 0.88);
+  --neo-shadow-soft: 10px 10px 24px rgba(160, 150, 140, 0.22), -8px -8px 20px rgba(255, 255, 255, 0.86);
+  --neo-shadow-small: 7px 7px 15px rgba(160, 150, 140, 0.24), -6px -6px 14px rgba(255, 255, 255, 0.88);
+  --neo-inset: inset 8px 8px 16px rgba(160, 150, 140, 0.22), inset -8px -8px 16px rgba(255, 255, 255, 0.86);
+  --neo-inset-soft: inset 5px 5px 12px rgba(160, 150, 140, 0.18), inset -5px -5px 12px rgba(255, 255, 255, 0.88);
+  --neo-glow: 0 0 42px rgba(125, 64, 71, 0.14);
+  --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 236, 230, 0.98));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 240, 234, 0.95));
   --goo-pill-bg: rgba(255, 255, 255, 0.98);
-  --goo-pill-text: #171721;
-  --goo-blue: #263cff;
-  --goo-pink: #d946ef;
+  --goo-pill-text: #2E2E2E;
+  --goo-blue: #7D4047;
+  --goo-pink: #9a5560;
   --skill-rim-shadow:
-    inset 13px 13px 24px rgba(121, 128, 145, 0.34),
-    inset -13px -13px 24px rgba(255, 255, 255, 0.98),
-    12px 12px 28px rgba(164, 172, 190, 0.34),
-    -9px -9px 24px rgba(255, 255, 255, 0.9);
+    inset 13px 13px 24px rgba(120, 110, 100, 0.28),
+    inset -13px -13px 24px rgba(255, 255, 255, 0.96),
+    12px 12px 28px rgba(160, 150, 140, 0.28),
+    -9px -9px 24px rgba(255, 255, 255, 0.86);
   --skill-rim-hover:
-    inset 15px 15px 28px rgba(109, 116, 132, 0.38),
+    inset 15px 15px 28px rgba(120, 110, 100, 0.32),
     inset -15px -15px 28px rgba(255, 255, 255, 1),
-    0 0 34px rgba(79, 70, 229, 0.18);
+    0 0 34px rgba(125, 64, 71, 0.18);
 }
+
 
 /* ===== Reset & Base ===== */
 *,
@@ -126,7 +128,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg);         /* transparent in dark mode — canvas shows through */
+  background: var(--bg);         /* transparent in dark mode â€” canvas shows through */
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
@@ -311,7 +313,7 @@ button {
   gap: 4px;
 }
 
-/* ── White-bar spotlight nav button ── */
+/* â”€â”€ White-bar spotlight nav button â”€â”€ */
 .nav-btn {
   position: relative;
   display: flex;
@@ -333,12 +335,12 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Active button — icon + label go white */
+/* Active button â€” icon + label go white */
 .nav-btn.is-active {
   color: #ffffff;
 }
 
-/* Dark pill background — fades in behind active item */
+/* Dark pill background â€” fades in behind active item */
 .nav-btn__bg {
   position: absolute;
   inset: 0;
@@ -348,7 +350,7 @@ button {
   z-index: 0;
 }
 
-/* ── White LED bar pinned to the top edge ── */
+/* â”€â”€ White LED bar pinned to the top edge â”€â”€ */
 .nav-btn__bar {
   position: absolute;
   top: 0;
@@ -366,7 +368,7 @@ button {
   transform-origin: center top;
 }
 
-/* ── Cone of light spreading downward ── */
+/* â”€â”€ Cone of light spreading downward â”€â”€ */
 .nav-btn__cone {
   position: absolute;
   top: 4px;
@@ -396,7 +398,7 @@ button {
   line-height: 1;
 }
 
-/* Label — ALWAYS VISIBLE, just dimmer when inactive */
+/* Label â€” ALWAYS VISIBLE, just dimmer when inactive */
 .nav-btn__label {
   position: relative;
   z-index: 2;
@@ -408,7 +410,7 @@ button {
   /* inactive: dim text colour; active: white (inherited from .is-active) */
   color: inherit;
   line-height: 1;
-  opacity: 1 !important;   /* always show — never hidden */
+  opacity: 1 !important;   /* always show â€” never hidden */
 }
 
 
@@ -745,7 +747,7 @@ button {
 /* ===== Skills ===== */
 .skills {
   background:
-    linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.035), transparent),
+    linear-gradient(180deg, transparent, rgba(125, 64, 71, 0.035), transparent),
     var(--bg-elevated);
 }
 
@@ -776,7 +778,7 @@ button {
 .skill-card__icon {
   font-size: 2.2rem;
   transition: transform var(--transition);
-  filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.22));
+  filter: drop-shadow(0 0 12px rgba(125, 64, 71, 0.22));
 }
 
 .skill-card:hover .skill-card__icon {
@@ -789,7 +791,7 @@ button {
   color: var(--text-muted);
 }
 
-/* ===== Projects — Bento Magazine Layout ===== */
+/* ===== Projects â€” Bento Magazine Layout ===== */
 
 /* Bento grid: 2-col desktop, stacked mobile */
 .pj-grid {
@@ -827,7 +829,7 @@ button {
   transform: translateY(-6px) scale(1.012);
 }
 
-/* Accent bar — stretches from left on hover */
+/* Accent bar â€” stretches from left on hover */
 .pj-card__bar {
   position: absolute;
   top: 0;
@@ -840,7 +842,7 @@ button {
   box-shadow: 0 0 18px 3px var(--accent, #f59e0b);
 }
 
-/* Index number — huge watermark */
+/* Index number â€” huge watermark */
 .pj-card__index {
   font-size: 4.5rem;
   font-weight: 900;
@@ -1008,7 +1010,7 @@ button {
   pointer-events: none;
 }
 
-/* ── Responsive ── */
+/* â”€â”€ Responsive â”€â”€ */
 @media (max-width: 768px) {
   .pj-grid {
     grid-template-columns: 1fr;
@@ -1027,7 +1029,7 @@ button {
 /* ===== Contact ===== */
 .contact {
   background:
-    radial-gradient(circle at 85% 15%, rgba(99, 102, 241, 0.08), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(125, 64, 71, 0.08), transparent 28%),
     var(--bg-elevated);
 }
 
