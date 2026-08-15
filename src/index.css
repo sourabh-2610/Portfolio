@@ -1,53 +1,53 @@
 ﻿/* ===== CSS Variables â€” 60/30/10 Rule ===== */
-/* 60% Charcoal Espresso | 30% Cream + Greige | 10% Vintage Rosewood */
+/* 60% Dark Teal-Black | 30% Sidecar Yellow | 10% Authentic Teal */
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
   --bg: transparent;
-  --bg-solid: #2E2E2E;                        /* 60% â€” Charcoal Espresso */
-  --bg-elevated: #353535;
-  --bg-card: #3a3a3a;
-  --bg-card-soft: #3e3e3e;
-  --border: rgba(241, 236, 230, 0.08);
-  --border-hover: rgba(125, 64, 71, 0.4);
-  --text: #F1ECE6;                             /* 30% â€” Alabaster Cream */
-  --text-muted: #DDD5CD;                       /* 30% â€” Warm Greige */
-  --text-dim: #a09a93;
-  --accent: #7D4047;                           /* 10% â€” Vintage Rosewood */
-  --accent-light: #9a5560;
-  --accent-glow: rgba(125, 64, 71, 0.25);
-  --navbar-bg: rgba(46, 46, 46, 0.88);
-  --overlay-bg: rgba(46, 46, 46, 0.7);
-  --mobile-menu-bg: rgba(46, 46, 46, 0.97);
-  --grid-line: rgba(255, 255, 255, 0.03);
-  --card-shadow: rgba(0, 0, 0, 0.3);
-  --hero-orb-2: #9a5560;
-  --ring-color: rgba(125, 64, 71, 0.3);
-  --tag-bg: rgba(125, 64, 71, 0.12);
-  --btn-text: #F1ECE6;
-  --neo-light: rgba(255, 255, 255, 0.07);
-  --neo-dark: rgba(0, 0, 0, 0.45);
+  --bg-solid: #0c1a1a;                        /* 60% â€” Dark teal-black */
+  --bg-elevated: #132424;
+  --bg-card: #172b2b;
+  --bg-card-soft: #1a3030;
+  --border: rgba(243, 232, 188, 0.08);
+  --border-hover: rgba(3, 83, 82, 0.5);
+  --text: #F3E8BC;                             /* 30% â€” Sidecar Yellow */
+  --text-muted: #c8bf9a;
+  --text-dim: #8a8470;
+  --accent: #035352;                           /* 10% â€” Authentic Teal */
+  --accent-light: #067a79;
+  --accent-glow: rgba(3, 83, 82, 0.3);
+  --navbar-bg: rgba(12, 26, 26, 0.88);
+  --overlay-bg: rgba(12, 26, 26, 0.7);
+  --mobile-menu-bg: rgba(12, 26, 26, 0.97);
+  --grid-line: rgba(243, 232, 188, 0.03);
+  --card-shadow: rgba(0, 0, 0, 0.35);
+  --hero-orb-2: #067a79;
+  --ring-color: rgba(3, 83, 82, 0.35);
+  --tag-bg: rgba(3, 83, 82, 0.15);
+  --btn-text: #F3E8BC;
+  --neo-light: rgba(243, 232, 188, 0.06);
+  --neo-dark: rgba(0, 0, 0, 0.5);
   --neo-shadow: 16px 16px 36px var(--neo-dark), -10px -10px 28px var(--neo-light);
-  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.35), -8px -8px 20px rgba(255, 255, 255, 0.04);
-  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.35), -5px -5px 14px rgba(255, 255, 255, 0.05);
-  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.4), inset -6px -6px 14px rgba(255, 255, 255, 0.05);
-  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.3), inset -4px -4px 10px rgba(255, 255, 255, 0.04);
-  --neo-glow: 0 0 42px rgba(125, 64, 71, 0.18);
-  --surface-gradient: linear-gradient(145deg, rgba(62, 62, 62, 0.96), rgba(42, 42, 42, 0.96));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(58, 58, 58, 0.94), rgba(38, 38, 38, 0.94));
-  --goo-pill-bg: rgba(241, 236, 230, 0.94);
-  --goo-pill-text: #2E2E2E;
-  --goo-blue: #7D4047;
-  --goo-pink: #9a5560;
+  --neo-shadow-soft: 10px 10px 24px rgba(0, 0, 0, 0.4), -8px -8px 20px rgba(243, 232, 188, 0.03);
+  --neo-shadow-small: 7px 7px 16px rgba(0, 0, 0, 0.4), -5px -5px 14px rgba(243, 232, 188, 0.04);
+  --neo-inset: inset 7px 7px 14px rgba(0, 0, 0, 0.45), inset -6px -6px 14px rgba(243, 232, 188, 0.04);
+  --neo-inset-soft: inset 4px 4px 10px rgba(0, 0, 0, 0.35), inset -4px -4px 10px rgba(243, 232, 188, 0.03);
+  --neo-glow: 0 0 42px rgba(3, 83, 82, 0.22);
+  --surface-gradient: linear-gradient(145deg, rgba(23, 43, 43, 0.96), rgba(14, 24, 24, 0.96));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(20, 38, 38, 0.94), rgba(12, 22, 22, 0.94));
+  --goo-pill-bg: rgba(243, 232, 188, 0.94);
+  --goo-pill-text: #0c1a1a;
+  --goo-blue: #035352;
+  --goo-pink: #067a79;
   --skill-rim-shadow:
-    inset 13px 13px 24px rgba(0, 0, 0, 0.42),
-    inset -12px -12px 22px rgba(255, 255, 255, 0.12),
-    12px 12px 30px rgba(0, 0, 0, 0.36),
-    -8px -8px 24px rgba(255, 255, 255, 0.04);
+    inset 13px 13px 24px rgba(0, 0, 0, 0.48),
+    inset -12px -12px 22px rgba(243, 232, 188, 0.08),
+    12px 12px 30px rgba(0, 0, 0, 0.4),
+    -8px -8px 24px rgba(243, 232, 188, 0.03);
   --skill-rim-hover:
-    inset 16px 16px 26px rgba(0, 0, 0, 0.48),
-    inset -14px -14px 24px rgba(255, 255, 255, 0.16),
-    0 0 36px rgba(125, 64, 71, 0.24);
+    inset 16px 16px 26px rgba(0, 0, 0, 0.52),
+    inset -14px -14px 24px rgba(243, 232, 188, 0.12),
+    0 0 36px rgba(3, 83, 82, 0.28);
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
   --radius: 12px;
@@ -59,51 +59,51 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: rgba(241, 236, 230, 0.92);            /* 60% â€” Alabaster Cream */
-  --bg-solid: #F1ECE6;
-  --bg-elevated: #DDD5CD;                      /* 30% â€” Warm Greige */
-  --bg-card: #ffffff;
-  --bg-card-soft: #f5f0ea;
-  --border: rgba(46, 46, 46, 0.1);
-  --border-hover: rgba(125, 64, 71, 0.45);
-  --text: #2E2E2E;                             /* Charcoal Espresso */
-  --text-muted: #4a4540;
-  --text-dim: #9a9490;
-  --accent: #7D4047;                           /* 10% â€” Vintage Rosewood */
-  --accent-light: #9a5560;
-  --accent-glow: rgba(125, 64, 71, 0.15);
-  --navbar-bg: rgba(241, 236, 230, 0.88);
-  --overlay-bg: rgba(241, 236, 230, 0.75);
-  --mobile-menu-bg: rgba(241, 236, 230, 0.98);
-  --grid-line: rgba(46, 46, 46, 0.05);
+  --bg: rgba(243, 232, 188, 0.92);            /* 60% â€” Sidecar Yellow */
+  --bg-solid: #F3E8BC;
+  --bg-elevated: #e8ddb3;
+  --bg-card: #fffdf5;
+  --bg-card-soft: #f8f0d4;
+  --border: rgba(12, 26, 26, 0.1);
+  --border-hover: rgba(3, 83, 82, 0.45);
+  --text: #0c1a1a;
+  --text-muted: #2a3a3a;
+  --text-dim: #6a7a70;
+  --accent: #035352;                           /* 10% â€” Authentic Teal */
+  --accent-light: #067a79;
+  --accent-glow: rgba(3, 83, 82, 0.15);
+  --navbar-bg: rgba(243, 232, 188, 0.88);
+  --overlay-bg: rgba(243, 232, 188, 0.75);
+  --mobile-menu-bg: rgba(243, 232, 188, 0.98);
+  --grid-line: rgba(12, 26, 26, 0.05);
   --card-shadow: rgba(0, 0, 0, 0.06);
-  --hero-orb-2: #7D4047;
-  --ring-color: rgba(125, 64, 71, 0.25);
-  --tag-bg: rgba(125, 64, 71, 0.08);
-  --btn-text: #F1ECE6;
-  --neo-light: rgba(255, 255, 255, 0.92);
-  --neo-dark: rgba(160, 150, 140, 0.3);
-  --neo-shadow: 18px 18px 36px rgba(160, 150, 140, 0.28), -14px -14px 30px rgba(255, 255, 255, 0.88);
-  --neo-shadow-soft: 10px 10px 24px rgba(160, 150, 140, 0.22), -8px -8px 20px rgba(255, 255, 255, 0.86);
-  --neo-shadow-small: 7px 7px 15px rgba(160, 150, 140, 0.24), -6px -6px 14px rgba(255, 255, 255, 0.88);
-  --neo-inset: inset 8px 8px 16px rgba(160, 150, 140, 0.22), inset -8px -8px 16px rgba(255, 255, 255, 0.86);
-  --neo-inset-soft: inset 5px 5px 12px rgba(160, 150, 140, 0.18), inset -5px -5px 12px rgba(255, 255, 255, 0.88);
-  --neo-glow: 0 0 42px rgba(125, 64, 71, 0.14);
-  --surface-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 236, 230, 0.98));
-  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 240, 234, 0.95));
-  --goo-pill-bg: rgba(255, 255, 255, 0.98);
-  --goo-pill-text: #2E2E2E;
-  --goo-blue: #7D4047;
-  --goo-pink: #9a5560;
+  --hero-orb-2: #035352;
+  --ring-color: rgba(3, 83, 82, 0.25);
+  --tag-bg: rgba(3, 83, 82, 0.08);
+  --btn-text: #F3E8BC;
+  --neo-light: rgba(255, 253, 245, 0.92);
+  --neo-dark: rgba(140, 130, 100, 0.28);
+  --neo-shadow: 18px 18px 36px rgba(140, 130, 100, 0.26), -14px -14px 30px rgba(255, 253, 245, 0.88);
+  --neo-shadow-soft: 10px 10px 24px rgba(140, 130, 100, 0.2), -8px -8px 20px rgba(255, 253, 245, 0.86);
+  --neo-shadow-small: 7px 7px 15px rgba(140, 130, 100, 0.22), -6px -6px 14px rgba(255, 253, 245, 0.88);
+  --neo-inset: inset 8px 8px 16px rgba(140, 130, 100, 0.2), inset -8px -8px 16px rgba(255, 253, 245, 0.86);
+  --neo-inset-soft: inset 5px 5px 12px rgba(140, 130, 100, 0.16), inset -5px -5px 12px rgba(255, 253, 245, 0.88);
+  --neo-glow: 0 0 42px rgba(3, 83, 82, 0.16);
+  --surface-gradient: linear-gradient(145deg, rgba(255, 253, 245, 0.98), rgba(243, 232, 188, 0.98));
+  --surface-gradient-soft: linear-gradient(145deg, rgba(255, 253, 245, 0.95), rgba(248, 240, 210, 0.95));
+  --goo-pill-bg: rgba(255, 253, 245, 0.98);
+  --goo-pill-text: #0c1a1a;
+  --goo-blue: #035352;
+  --goo-pink: #067a79;
   --skill-rim-shadow:
-    inset 13px 13px 24px rgba(120, 110, 100, 0.28),
-    inset -13px -13px 24px rgba(255, 255, 255, 0.96),
-    12px 12px 28px rgba(160, 150, 140, 0.28),
-    -9px -9px 24px rgba(255, 255, 255, 0.86);
+    inset 13px 13px 24px rgba(100, 95, 70, 0.26),
+    inset -13px -13px 24px rgba(255, 253, 245, 0.96),
+    12px 12px 28px rgba(140, 130, 100, 0.26),
+    -9px -9px 24px rgba(255, 253, 245, 0.86);
   --skill-rim-hover:
-    inset 15px 15px 28px rgba(120, 110, 100, 0.32),
-    inset -15px -15px 28px rgba(255, 255, 255, 1),
-    0 0 34px rgba(125, 64, 71, 0.18);
+    inset 15px 15px 28px rgba(100, 95, 70, 0.3),
+    inset -15px -15px 28px rgba(255, 253, 245, 1),
+    0 0 34px rgba(3, 83, 82, 0.2);
 }
 
 
@@ -128,7 +128,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg);         /* transparent in dark mode â€” canvas shows through */
+  background: var(--bg);         /* transparent in dark mode Ã¢â‚¬â€ canvas shows through */
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
@@ -313,7 +313,7 @@ button {
   gap: 4px;
 }
 
-/* â”€â”€ White-bar spotlight nav button â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ White-bar spotlight nav button Ã¢â€â‚¬Ã¢â€â‚¬ */
 .nav-btn {
   position: relative;
   display: flex;
@@ -335,12 +335,12 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Active button â€” icon + label go white */
+/* Active button Ã¢â‚¬â€ icon + label go white */
 .nav-btn.is-active {
   color: #ffffff;
 }
 
-/* Dark pill background â€” fades in behind active item */
+/* Dark pill background Ã¢â‚¬â€ fades in behind active item */
 .nav-btn__bg {
   position: absolute;
   inset: 0;
@@ -350,7 +350,7 @@ button {
   z-index: 0;
 }
 
-/* â”€â”€ White LED bar pinned to the top edge â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ White LED bar pinned to the top edge Ã¢â€â‚¬Ã¢â€â‚¬ */
 .nav-btn__bar {
   position: absolute;
   top: 0;
@@ -368,7 +368,7 @@ button {
   transform-origin: center top;
 }
 
-/* â”€â”€ Cone of light spreading downward â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Cone of light spreading downward Ã¢â€â‚¬Ã¢â€â‚¬ */
 .nav-btn__cone {
   position: absolute;
   top: 4px;
@@ -398,7 +398,7 @@ button {
   line-height: 1;
 }
 
-/* Label â€” ALWAYS VISIBLE, just dimmer when inactive */
+/* Label Ã¢â‚¬â€ ALWAYS VISIBLE, just dimmer when inactive */
 .nav-btn__label {
   position: relative;
   z-index: 2;
@@ -410,7 +410,7 @@ button {
   /* inactive: dim text colour; active: white (inherited from .is-active) */
   color: inherit;
   line-height: 1;
-  opacity: 1 !important;   /* always show â€” never hidden */
+  opacity: 1 !important;   /* always show Ã¢â‚¬â€ never hidden */
 }
 
 
@@ -747,7 +747,7 @@ button {
 /* ===== Skills ===== */
 .skills {
   background:
-    linear-gradient(180deg, transparent, rgba(125, 64, 71, 0.035), transparent),
+    linear-gradient(180deg, transparent, rgba(3, 83, 82, 0.035), transparent),
     var(--bg-elevated);
 }
 
@@ -778,7 +778,7 @@ button {
 .skill-card__icon {
   font-size: 2.2rem;
   transition: transform var(--transition);
-  filter: drop-shadow(0 0 12px rgba(125, 64, 71, 0.22));
+  filter: drop-shadow(0 0 12px rgba(3, 83, 82, 0.22));
 }
 
 .skill-card:hover .skill-card__icon {
@@ -791,7 +791,7 @@ button {
   color: var(--text-muted);
 }
 
-/* ===== Projects â€” Bento Magazine Layout ===== */
+/* ===== Projects Ã¢â‚¬â€ Bento Magazine Layout ===== */
 
 /* Bento grid: 2-col desktop, stacked mobile */
 .pj-grid {
@@ -829,7 +829,7 @@ button {
   transform: translateY(-6px) scale(1.012);
 }
 
-/* Accent bar â€” stretches from left on hover */
+/* Accent bar Ã¢â‚¬â€ stretches from left on hover */
 .pj-card__bar {
   position: absolute;
   top: 0;
@@ -842,7 +842,7 @@ button {
   box-shadow: 0 0 18px 3px var(--accent, #f59e0b);
 }
 
-/* Index number â€” huge watermark */
+/* Index number Ã¢â‚¬â€ huge watermark */
 .pj-card__index {
   font-size: 4.5rem;
   font-weight: 900;
@@ -1010,7 +1010,7 @@ button {
   pointer-events: none;
 }
 
-/* â”€â”€ Responsive â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 768px) {
   .pj-grid {
     grid-template-columns: 1fr;
@@ -1029,7 +1029,7 @@ button {
 /* ===== Contact ===== */
 .contact {
   background:
-    radial-gradient(circle at 85% 15%, rgba(125, 64, 71, 0.08), transparent 28%),
+    radial-gradient(circle at 85% 15%, rgba(3, 83, 82, 0.08), transparent 28%),
     var(--bg-elevated);
 }
 
