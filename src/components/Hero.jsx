@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { HiArrowDown, HiOutlineMail } from 'react-icons/hi'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import AnimatedName from './AnimatedName'
 
 export default function Hero() {
   return (
@@ -30,35 +31,7 @@ export default function Hero() {
             <span className="hero__greeting">Hello, I'm</span>
           </motion.div>
 
-        <motion.h1
-          className="hero__name"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.span
-            className="hero__name-word hero__name-first"
-            whileHover={{
-              y: -6,
-              scale: 1.02,
-              textShadow: '0 0 50px rgba(103, 232, 249, 0.8), 0 0 90px rgba(56, 189, 248, 0.5)',
-              transition: { type: 'spring', stiffness: 400, damping: 20 },
-            }}
-          >
-            Sourabh
-          </motion.span>{' '}
-          <motion.span
-            className="hero__name-word hero__name-accent"
-            whileHover={{
-              y: -6,
-              scale: 1.03,
-              filter: 'drop-shadow(0 0 45px rgba(0, 240, 255, 1)) drop-shadow(0 0 80px rgba(56, 189, 248, 0.8))',
-              transition: { type: 'spring', stiffness: 400, damping: 20 },
-            }}
-          >
-            Dhulrao
-          </motion.span>
-        </motion.h1>
+          <AnimatedName firstName="Sourabh" lastName="Dhulrao" />
 
         <motion.p
           className="hero__tagline"

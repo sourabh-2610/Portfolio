@@ -634,25 +634,56 @@ button {
   font-family: var(--font-display);
   font-size: clamp(3.2rem, 5.8vw, 5.2rem);
   font-weight: 700;
-  line-height: 1.08;
+  line-height: 1.25;
   letter-spacing: -1.2px;
   color: #ffffff;
-  margin-bottom: 22px;
+  margin-bottom: 26px;
   text-align: left;
   user-select: none;
   -webkit-user-select: none;
 }
 
-.hero__name-word {
+.interactive-word {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero__word-first {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.hero__word-accent {
+  display: block;
+}
+
+.interactive-word__sparks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 20;
+}
+
+.spark-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.interactive-char {
   display: inline-block;
   cursor: pointer;
   will-change: transform, filter;
-  transition: filter 0.25s ease, text-shadow 0.25s ease;
+  transition: filter 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.hero__name-first {
+.interactive-char--first {
   color: #ffffff;
-  display: block;
   text-shadow: 0 0 35px rgba(255, 255, 255, 0.35), 0 4px 25px rgba(0, 0, 0, 0.95);
 }
 
@@ -671,7 +702,7 @@ button {
   }
 }
 
-.hero__name-accent {
+.interactive-char--accent {
   display: inline-block;
   background: linear-gradient(
     90deg,
