@@ -1,29 +1,20 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { HiOutlineMail, HiOutlineLocationMarker, HiClipboardCopy } from 'react-icons/hi'
+import { HiOutlineMail, HiOutlineLocationMarker } from 'react-icons/hi'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import { SectionHeading, slideInLeft, slideInRight } from './animations'
-import { useToast } from '../context/ToastContext'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
-  const { addToast } = useToast()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitted(true)
-    addToast('Message sent! Sourabh will get back to you soon.', 'success')
     setTimeout(() => {
       setSubmitted(false)
       setForm({ name: '', email: '', message: '' })
     }, 3000)
-  }
-
-  const handleCopyEmail = (e) => {
-    e.preventDefault()
-    navigator.clipboard?.writeText('sourabh.dhulrao@email.com')
-    addToast('Email copied to clipboard: sourabh.dhulrao@email.com', 'success')
   }
 
   return (
@@ -39,24 +30,21 @@ export default function Contact() {
           <SectionHeading
             label="Contact"
             title="Let's work together"
-            description="Have an AI challenge, a full-stack project, or an engineering role in mind? I'd love to hear from you."
+            description="Have a project in mind or just want to say hello? I'd love to hear from you."
           />
 
           <div className="contact__details">
             <motion.a
               href="mailto:sourabh.dhulrao@email.com"
-              className="contact__detail contact__detail--copyable"
-              onClick={handleCopyEmail}
-              title="Click to copy email"
+              className="contact__detail"
               whileHover={{ x: 6 }}
             >
               <HiOutlineMail />
               <span>sourabh.dhulrao@email.com</span>
-              <HiClipboardCopy className="contact__copy-icon" />
             </motion.a>
             <div className="contact__detail">
               <HiOutlineLocationMarker />
-              <span>India • Available for Global / Remote Roles</span>
+              <span>India</span>
             </div>
           </div>
 
@@ -106,7 +94,7 @@ export default function Contact() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   required
-                  placeholder="Tell me about your project, idea, or role..."
+                  placeholder="Tell me about your project..."
                 />
               ) : (
                 <input

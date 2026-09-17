@@ -18,7 +18,6 @@ import {
 import { FaBrain, FaServer, FaCode, FaTools, FaLayerGroup } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext'
 import { SectionHeading } from './animations'
-import { useSound } from './SoundManager'
 
 const CATEGORIES = [
   { id: 'all', label: 'All Stacks', icon: FaLayerGroup },
@@ -47,16 +46,10 @@ const skills = [
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('all')
   const { theme } = useTheme()
-  const { playClick } = useSound()
 
   const filteredSkills = skills.filter((s) =>
     activeCategory === 'all' ? true : s.category === activeCategory
   )
-
-  const handleCategoryChange = (catId) => {
-    playClick()
-    setActiveCategory(catId)
-  }
 
   return (
     <section id="skills" className="section skills">
@@ -77,7 +70,7 @@ export default function Skills() {
                 key={cat.id}
                 type="button"
                 className={`skill-filter-btn ${isSelected ? 'is-active' : ''}`}
-                onClick={() => handleCategoryChange(cat.id)}
+                onClick={() => setActiveCategory(cat.id)}
               >
                 <Icon className="skill-filter-icon" />
                 <span>{cat.label}</span>
