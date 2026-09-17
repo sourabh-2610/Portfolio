@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { HiHome, HiUser, HiLightningBolt, HiCode, HiMail, HiSearch } from 'react-icons/hi'
+import { HiHome, HiUser, HiLightningBolt, HiCode, HiMail, HiSearch, HiVolumeUp, HiVolumeOff } from 'react-icons/hi'
 import ThemeToggle from './ThemeToggle'
+import { useSound } from './SoundManager'
 
 const links = [
   { href: '#home',     label: 'Home',     Icon: HiHome },
@@ -14,6 +15,7 @@ const links = [
 export default function Navbar({ onOpenCmd }) {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive]     = useState('home')
+  const { soundEnabled, toggleSound, playClick } = useSound()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -33,8 +35,10 @@ export default function Navbar({ onOpenCmd }) {
     return () => observer.disconnect()
   }, [])
 
-  const scrollTo = (href) =>
+  const scrollTo = (href) => {
+    playClick()
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -59,8 +63,8 @@ export default function Navbar({ onOpenCmd }) {
           {/* Desktop Nav Links */}
           <ul className="navbar__links" role="list">
             {links.map((link, i) => {
-              const id    = link.href.slice(1)
-              const on    = active === id
+              const id = link.href.slice(1)
+              const on = active === id
               return (
                 <motion.li
                   key={link.href}
@@ -101,17 +105,36 @@ export default function Navbar({ onOpenCmd }) {
             })}
           </ul>
 
-          {/* Actions: Command Palette, Theme Toggle, Contact CTA */}
+          {/* Actions: Command Palette, Sound Toggle, Theme Toggle, Contact CTA */}
           <div className="navbar__actions">
             <button
               type="button"
               className="nav-cmd-trigger"
-              onClick={onOpenCmd}
+              onClick={() => { playClick(); onOpenCmd() }}
               title="Open Command Palette (Ctrl + K)"
               aria-label="Open Command Palette"
             >
               <HiSearch className="nav-cmd-icon" />
               <span className="nav-cmd-kbd">Ctrl K</span>
+            </button>
+
+            {/* High-Tech Sound Toggle */}
+            <button
+              type="button"
+              className={`nav-sound-toggle ${soundEnabled ? 'is-active' : ''}`}
+              onClick={toggleSound}
+              title={soundEnabled ? 'Mute Sound FX' : 'Enable Futuristic UI Audio'}
+              aria-label="Toggle Sound Effects"
+            >
+              {soundEnabled ? (
+                <div className="sound-equalizer">
+                  <span className="eq-bar" />
+                  <span className="eq-bar" />
+                  <span className="eq-bar" />
+                </div>
+              ) : (
+                <HiVolumeOff className="sound-muted-icon" />
+              )}
             </button>
 
             <ThemeToggle />

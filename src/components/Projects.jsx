@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HiExternalLink, HiArrowRight, HiSparkles } from 'react-icons/hi'
-import { FaGithub } from 'react-icons/fa'
+import { HiExternalLink, HiArrowRight, HiSparkles, HiLightningBolt } from 'react-icons/hi'
+import { FaGithub, FaRobot, FaShoppingCart, FaColumns, FaCloudSun, FaLayerGroup } from 'react-icons/fa'
 import { SectionHeading, fadeUp } from './animations'
 
 export const projectsData = [
@@ -12,11 +12,12 @@ export const projectsData = [
       'Multi-turn intelligent conversational assistant powered by LangChain, FastAPI, and vector embeddings. Features streaming tokens, context retention, and prompt orchestration.',
     tags: ['Python', 'FastAPI', 'LangChain', 'React', 'Vector DB'],
     accent: '#a855f7',
-    size: 'large',   // featured card
+    size: 'large',
     year: '2024',
     category: 'AI / ML',
     live: '#',
     github: '#',
+    mockupType: 'ai-chat',
   },
   {
     id: 1,
@@ -30,6 +31,7 @@ export const projectsData = [
     category: 'Full-Stack',
     live: '#',
     github: '#',
+    mockupType: 'ecommerce',
   },
   {
     id: 2,
@@ -43,6 +45,7 @@ export const projectsData = [
     category: 'SaaS',
     live: '#',
     github: '#',
+    mockupType: 'kanban',
   },
   {
     id: 3,
@@ -56,6 +59,7 @@ export const projectsData = [
     category: 'Data Viz',
     live: '#',
     github: '#',
+    mockupType: 'weather',
   },
   {
     id: 4,
@@ -69,8 +73,146 @@ export const projectsData = [
     category: 'Dev Tools',
     live: '#',
     github: '#',
+    mockupType: 'cms',
   },
 ]
+
+function ProjectMockupVisual({ type, accent }) {
+  if (type === 'ai-chat') {
+    return (
+      <div className="card-mockup mockup--chat">
+        <div className="mockup-header">
+          <div className="mockup-header-left">
+            <FaRobot style={{ color: accent }} />
+            <span>Agent v3.1</span>
+          </div>
+          <span className="mockup-badge">Streaming 148 tok/s</span>
+        </div>
+        <div className="mockup-chat-body">
+          <div className="mockup-msg mockup-msg--user">
+            <span>Analyze vector similarity for user query...</span>
+          </div>
+          <div className="mockup-msg mockup-msg--ai">
+            <span className="ai-icon-mini">⚡</span>
+            <span>Retrieved 3 chunks (cos-sim: 0.94). Output stream initialized with zero dropped frames.</span>
+          </div>
+        </div>
+        <div className="mockup-chat-footer">
+          <div className="mockup-wave">
+            <span /><span /><span /><span /><span />
+          </div>
+          <span className="mockup-tag-mini">Llama 3.1 70B</span>
+        </div>
+      </div>
+    )
+  }
+
+  if (type === 'ecommerce') {
+    return (
+      <div className="card-mockup mockup--ecom">
+        <div className="mockup-header">
+          <div className="mockup-header-left">
+            <FaShoppingCart style={{ color: accent }} />
+            <span>Store Dashboard</span>
+          </div>
+          <span className="mockup-badge text-green">+18.4% Revenue</span>
+        </div>
+        <div className="mockup-metric-strip">
+          <div className="metric-box">
+            <span className="metric-val">$14,290</span>
+            <span className="metric-lbl">Monthly Volume</span>
+          </div>
+          <svg className="sparkline" viewBox="0 0 100 30" preserveAspectRatio="none">
+            <path
+              d="M0,25 Q20,10 40,18 T70,5 T100,12"
+              fill="none"
+              stroke={accent}
+              strokeWidth="2.5"
+            />
+          </svg>
+        </div>
+        <div className="mockup-footer-pills">
+          <span className="pill-status">● Real-time Inventory</span>
+          <span className="pill-status">Stripe Verified</span>
+        </div>
+      </div>
+    )
+  }
+
+  if (type === 'kanban') {
+    return (
+      <div className="card-mockup mockup--kanban">
+        <div className="mockup-header">
+          <div className="mockup-header-left">
+            <FaColumns style={{ color: accent }} />
+            <span>Live Workspace</span>
+          </div>
+          <span className="mockup-badge">4 Members Online</span>
+        </div>
+        <div className="kanban-columns">
+          <div className="kanban-col">
+            <span className="col-title">In Progress (2)</span>
+            <div className="kanban-item" style={{ borderLeftColor: accent }}>
+              <span>Deploy LLM Gateway</span>
+            </div>
+            <div className="kanban-item">
+              <span>WebSocket Sync</span>
+            </div>
+          </div>
+          <div className="kanban-col">
+            <span className="col-title">Done (8)</span>
+            <div className="kanban-item is-done">
+              <span>Auth Pipeline</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (type === 'weather') {
+    return (
+      <div className="card-mockup mockup--weather">
+        <div className="mockup-header">
+          <div className="mockup-header-left">
+            <FaCloudSun style={{ color: accent }} />
+            <span>Atmospheric Sensor</span>
+          </div>
+          <span className="mockup-badge">Global Geo API</span>
+        </div>
+        <div className="weather-preview-stat">
+          <span className="temp-big">22°C</span>
+          <span className="weather-cond">Partly Cloudy • Low Latency</span>
+        </div>
+        <div className="weather-curve-wrap">
+          <svg className="weather-curve" viewBox="0 0 120 25" preserveAspectRatio="none">
+            <path
+              d="M0,18 Q30,5 60,12 T120,8"
+              fill="none"
+              stroke={accent}
+              strokeWidth="2"
+            />
+          </svg>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="card-mockup mockup--cms">
+      <div className="mockup-header">
+        <div className="mockup-header-left">
+          <FaLayerGroup style={{ color: accent }} />
+          <span>Headless API</span>
+        </div>
+        <span className="mockup-badge">Dockerized</span>
+      </div>
+      <div className="cms-code-preview">
+        <code>GET /v1/posts/featured &#8594; 200 OK (14ms)</code>
+      </div>
+    </div>
+  )
+}
 
 function ProjectCard({ project, index, onSelect }) {
   const [hovered, setHovered] = useState(false)
@@ -86,9 +228,8 @@ function ProjectCard({ project, index, onSelect }) {
     const centerX = rect.width / 2
     const centerY = rect.height / 2
 
-    // Calculate subtle 3D tilt
-    const rotateX = ((y - centerY) / centerY) * -6
-    const rotateY = ((x - centerX) / centerX) * 6
+    const rotateX = ((y - centerY) / centerY) * -5
+    const rotateY = ((x - centerX) / centerX) * 5
 
     setTilt({ x: rotateX, y: rotateY })
     setSpotlight({ x, y, opacity: 1 })
@@ -103,7 +244,7 @@ function ProjectCard({ project, index, onSelect }) {
   return (
     <motion.article
       ref={cardRef}
-      className={`pj-card pj-card--${project.size} pj-card--3d`}
+      className={`pj-card pj-card--${project.size} pj-card--3d pj-card--rich`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
@@ -129,7 +270,7 @@ function ProjectCard({ project, index, onSelect }) {
         className="pj-card__spotlight"
         style={{
           opacity: spotlight.opacity,
-          background: `radial-gradient(550px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255, 255, 255, 0.08), transparent 50%)`,
+          background: `radial-gradient(550px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255, 255, 255, 0.09), transparent 50%)`,
         }}
       />
 
@@ -140,18 +281,21 @@ function ProjectCard({ project, index, onSelect }) {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      {/* Index number */}
-      <span className="pj-card__index">
-        {String(index + 1).padStart(2, '0')}
-      </span>
-
-      {/* Category pill */}
-      <div className="pj-card__category">
-        {project.category === 'AI / ML' && <HiSparkles className="inline-icon" />}
-        {project.category}
+      {/* Top Header Row */}
+      <div className="pj-card__top">
+        <span className="pj-card__index">{String(index + 1).padStart(2, '0')}</span>
+        <div className="pj-card__category">
+          {project.category === 'AI / ML' && <HiSparkles className="inline-icon" />}
+          {project.category}
+        </div>
       </div>
 
-      {/* Main content */}
+      {/* Rich Interactive UI Visual Mockup */}
+      <div className="pj-card__visual-wrap">
+        <ProjectMockupVisual type={project.mockupType} accent={project.accent} />
+      </div>
+
+      {/* Main Content */}
       <div className="pj-card__body">
         <h3 className="pj-card__title">{project.title}</h3>
         <p className="pj-card__desc">{project.description}</p>
@@ -166,7 +310,7 @@ function ProjectCard({ project, index, onSelect }) {
         </div>
       </div>
 
-      {/* Footer — year + links */}
+      {/* Footer */}
       <div className="pj-card__footer">
         <span className="pj-card__year">{project.year}</span>
         <div className="pj-card__links" onClick={(e) => e.stopPropagation()}>
@@ -199,20 +343,7 @@ function ProjectCard({ project, index, onSelect }) {
         </div>
       </div>
 
-      {/* Hover glow overlay */}
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            className="pj-card__glow"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* "View case study" reveal */}
+      {/* "Inspect Case Study" Reveal */}
       <AnimatePresence>
         {hovered && (
           <motion.div
@@ -222,7 +353,7 @@ function ProjectCard({ project, index, onSelect }) {
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.25 }}
           >
-            Deep Dive Case Study <HiArrowRight />
+            Deep Dive Architecture <HiArrowRight />
           </motion.div>
         )}
       </AnimatePresence>
@@ -236,8 +367,8 @@ export default function Projects({ onSelectProject }) {
       <div className="container">
         <SectionHeading
           label="Projects"
-          title="Selected work"
-          description="Click any project for deep-dive architectural insights and live demonstrations."
+          title="Engineered with Precision"
+          description="Interactive visual previews of selected AI systems and full-stack platforms."
         />
 
         {/* Bento grid */}
