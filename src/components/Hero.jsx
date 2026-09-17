@@ -19,15 +19,16 @@ export default function Hero() {
         <div className="hero__grid" />
       </div>
 
-      <div className="container hero__content">
-        <motion.p
-          className="hero__greeting"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Hello, I'm
-        </motion.p>
+      <div className="container hero__container">
+        <div className="hero__content">
+          <motion.div
+            className="hero__greeting-wrapper"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <span className="hero__greeting">Hello, I'm</span>
+          </motion.div>
 
         <motion.h1
           className="hero__name"
@@ -127,6 +128,9 @@ export default function Hero() {
           ))}
         </motion.div>
       </div>
+
+      <div className="hero__stage" aria-hidden="true" />
+    </div>
 
       <motion.a
         href="#about"

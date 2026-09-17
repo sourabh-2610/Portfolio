@@ -448,13 +448,22 @@ export default function ParticleBackground({
       depthWrite: false,
     })
 
+    const getBaseOffsetX = () => {
+      const w = container.clientWidth || window.innerWidth
+      if (w >= 1200) return 1.65
+      if (w >= 992) return 1.35
+      return 0
+    }
+    let currentOffsetX = getBaseOffsetX()
+
     const particleSystem = new THREE.Points(particleGeometry, particleMaterial)
+    particleSystem.position.x = currentOffsetX
     scene.add(particleSystem)
 
     // E. Liquid Light Concentric Ripple Pool
     const rippleCount = 6
     const rippleGroup = new THREE.Group()
-    rippleGroup.position.set(0, -2.2, 0)
+    rippleGroup.position.set(currentOffsetX, -2.2, 0)
     rippleGroup.rotation.x = Math.PI / 2
 
     const rippleRings = []
@@ -524,6 +533,9 @@ export default function ParticleBackground({
       camera.aspect = width / height
       camera.updateProjectionMatrix()
       renderer.setSize(width, height)
+      currentOffsetX = getBaseOffsetX()
+      particleSystem.position.x = currentOffsetX
+      rippleGroup.position.x = currentOffsetX
     }
 
     const resizeObserver = new ResizeObserver(() => handleResize())
@@ -554,6 +566,7 @@ export default function ParticleBackground({
       }
       particleSystem.rotation.x = Math.sin(elapsedTime * 0.08) * 0.08 - mouseRef.current.y * 0.35
       particleSystem.position.y = Math.sin(elapsedTime * 0.6) * 0.08
+      particleSystem.position.x = currentOffsetX
 
       starField.rotation.y = elapsedTime * 0.02 + mouseRef.current.x * 0.08
       starField.rotation.x = -mouseRef.current.y * 0.05
@@ -562,6 +575,7 @@ export default function ParticleBackground({
       const mouseWorldX = mouseRef.current.worldX
       const mouseWorldY = mouseRef.current.worldY
       const repelRadiusSq = 1.4 * 1.4
+      const relMouseX = mouseWorldX - currentOffsetX
 
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3
@@ -577,7 +591,7 @@ export default function ParticleBackground({
 
         // Interactive mouse repulsion
         if (interactiveMouse) {
-          const dx = positions[i3] - mouseWorldX
+          const dx = positions[i3] - relMouseX
           const dy = positions[i3 + 1] - mouseWorldY
           const distSq = dx * dx + dy * dy
 
