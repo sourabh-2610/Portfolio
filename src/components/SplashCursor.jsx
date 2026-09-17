@@ -18,7 +18,8 @@ function SplashCursor({
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
   TRANSPARENT = true,
   RAINBOW_MODE = true,
-  COLOR = '#ff0000'
+  COLOR = '#ff0000',
+  OPACITY = 0.35,
 }) {
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
@@ -1073,7 +1074,8 @@ function SplashCursor({
         width: '100dvw',
         height: '100dvh',
         maxWidth: '100%',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        opacity: OPACITY
       }}
     >
       <canvas

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Reveal, SectionHeading, slideInLeft, slideInRight } from './animations'
+import sourabhImg from '../assets/sourabh.png'
 
 const stats = [
   { value: '3+', label: 'Years Experience' },
@@ -18,16 +19,32 @@ export default function About() {
           viewport={{ once: true, margin: '-80px' }}
           variants={slideInLeft}
         >
-          <div className="about__image-wrapper">
-            <div className="about__image">
-              <span className="about__initials">SD</span>
-            </div>
+          <div className="about__photo-stack">
+            {/* Background square-type rotating dashed line */}
             <motion.div
-              className="about__image-ring"
+              className="about__photo-ring"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
             />
+
+            {/* Backing rotated cards */}
+            <div className="about__photo-card-back about__photo-card-back--left" />
+            <div className="about__photo-card-back about__photo-card-back--right" />
+
+            {/* Main photo card */}
+            <div className="about__photo-card">
+              <img
+                src={sourabhImg}
+                alt="Sourabh Dhulrao"
+                className="about__photo-img"
+              />
+              {/* Diagonal light sweep */}
+              <div className="about__photo-sweep" />
+              {/* Hover to reveal text hint */}
+              <span className="about__photo-hint">Hover to reveal</span>
+            </div>
           </div>
+
           <div className="about__stats">
             {stats.map((stat, i) => (
               <motion.div

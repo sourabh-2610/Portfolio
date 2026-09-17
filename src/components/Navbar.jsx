@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { HiHome, HiUser, HiLightningBolt, HiCode, HiMail } from 'react-icons/hi'
-import ThemeToggle from './ThemeToggle'
 
 const links = [
   { href: '#home',     label: 'Home',     Icon: HiHome },
@@ -106,7 +105,6 @@ export default function Navbar() {
           </ul>
 
           <div className="navbar__actions">
-            <ThemeToggle />
             <motion.a
               href="#contact"
               className="btn btn--primary navbar__cta"
@@ -116,10 +114,6 @@ export default function Navbar() {
             >
               Let's Talk
             </motion.a>
-          </div>
-
-          <div className="navbar__mobile-actions">
-            <ThemeToggle />
           </div>
         </nav>
       </motion.header>
