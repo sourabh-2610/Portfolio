@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { HiHome, HiUser, HiLightningBolt, HiCode, HiMail } from 'react-icons/hi'
+import { HiHome, HiUser, HiLightningBolt, HiCode, HiMail, HiSearch } from 'react-icons/hi'
+import ThemeToggle from './ThemeToggle'
 
 const links = [
   { href: '#home',     label: 'Home',     Icon: HiHome },
@@ -10,7 +11,7 @@ const links = [
   { href: '#contact',  label: 'Contact',  Icon: HiMail },
 ]
 
-export default function Navbar() {
+export default function Navbar({ onOpenCmd }) {
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive]     = useState('home')
 
@@ -37,7 +38,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Desktop Navbar ── */}
+      {/* ── Desktop & Mobile Top Header ── */}
       <motion.header
         className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
         initial={{ y: -100, opacity: 0 }}
@@ -55,6 +56,7 @@ export default function Navbar() {
             SD<span className="navbar__logo-dot">.</span>
           </motion.a>
 
+          {/* Desktop Nav Links */}
           <ul className="navbar__links" role="list">
             {links.map((link, i) => {
               const id    = link.href.slice(1)
@@ -70,25 +72,21 @@ export default function Navbar() {
                     className={`nav-btn ${on ? 'is-active' : ''}`}
                     onClick={() => scrollTo(link.href)}
                   >
-                    {/* dark pill bg */}
                     <motion.span
                       className="nav-btn__bg"
                       animate={{ opacity: on ? 1 : 0 }}
                       transition={{ duration: 0.25 }}
                     />
-                    {/* white LED bar */}
                     <motion.span
                       className="nav-btn__bar"
                       animate={{ opacity: on ? 1 : 0, scaleX: on ? 1 : 0.3 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 28 }}
                     />
-                    {/* light cone */}
                     <motion.span
                       className="nav-btn__cone"
                       animate={{ opacity: on ? 1 : 0 }}
                       transition={{ duration: 0.28 }}
                     />
-                    {/* icon */}
                     <motion.span
                       className="nav-btn__icon"
                       animate={on ? { y: -2, scale: 1.15 } : { y: 0, scale: 1 }}
@@ -96,7 +94,6 @@ export default function Navbar() {
                     >
                       <link.Icon />
                     </motion.span>
-                    {/* label — always visible */}
                     <span className="nav-btn__label">{link.label}</span>
                   </button>
                 </motion.li>
@@ -104,7 +101,21 @@ export default function Navbar() {
             })}
           </ul>
 
+          {/* Actions: Command Palette, Theme Toggle, Contact CTA */}
           <div className="navbar__actions">
+            <button
+              type="button"
+              className="nav-cmd-trigger"
+              onClick={onOpenCmd}
+              title="Open Command Palette (Ctrl + K)"
+              aria-label="Open Command Palette"
+            >
+              <HiSearch className="nav-cmd-icon" />
+              <span className="nav-cmd-kbd">Ctrl K</span>
+            </button>
+
+            <ThemeToggle />
+
             <motion.a
               href="#contact"
               className="btn btn--primary navbar__cta"
@@ -118,7 +129,7 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
-      {/* ── Mobile Bottom Bar ── */}
+      {/* ── Mobile Bottom Navigation ── */}
       <motion.nav
         className="bottom-nav"
         aria-label="Mobile navigation"

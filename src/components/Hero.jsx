@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
-import { HiArrowDown, HiOutlineMail } from 'react-icons/hi'
+import { HiArrowDown, HiOutlineMail, HiSparkles } from 'react-icons/hi'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
-export default function Hero() {
+export default function Hero({ onOpenAI }) {
   return (
     <section id="home" className="hero">
       <div className="hero__bg">
@@ -20,6 +20,19 @@ export default function Hero() {
       </div>
 
       <div className="container hero__content">
+        {/* Availability Badge */}
+        <motion.div
+          className="hero__badge-wrap"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <div className="hero__status-badge">
+            <span className="hero__status-pulse" />
+            <span className="hero__status-text">Available for AI & Full-Stack Roles</span>
+          </div>
+        </motion.div>
+
         <motion.p
           className="hero__greeting"
           initial={{ opacity: 0, y: 20 }}
@@ -65,8 +78,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
         >
-          An AI Developer who Build things that people remember,
-          not just websites.
+          AI Engineer & Full-Stack Developer crafting intelligent systems and memorable digital experiences.
         </motion.p>
 
         <motion.div
@@ -99,6 +111,17 @@ export default function Hero() {
           >
             <HiOutlineMail /> Get In Touch
           </motion.a>
+          {onOpenAI && (
+            <motion.button
+              type="button"
+              className="btn btn--ai-quick"
+              onClick={onOpenAI}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <HiSparkles /> Ask AI Copilot
+            </motion.button>
+          )}
         </motion.div>
 
         <motion.div

@@ -1,18 +1,31 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HiExternalLink, HiArrowRight } from 'react-icons/hi'
+import { HiExternalLink, HiArrowRight, HiSparkles } from 'react-icons/hi'
 import { FaGithub } from 'react-icons/fa'
 import { SectionHeading, fadeUp } from './animations'
 
-const projects = [
+export const projectsData = [
+  {
+    id: 5,
+    title: 'AI Conversational Agent',
+    description:
+      'Multi-turn intelligent conversational assistant powered by LangChain, FastAPI, and vector embeddings. Features streaming tokens, context retention, and prompt orchestration.',
+    tags: ['Python', 'FastAPI', 'LangChain', 'React', 'Vector DB'],
+    accent: '#a855f7',
+    size: 'large',   // featured card
+    year: '2024',
+    category: 'AI / ML',
+    live: '#',
+    github: '#',
+  },
   {
     id: 1,
     title: 'E-Commerce Platform',
     description:
-      'A full-stack online store with cart, payments, and admin dashboard. Built for performance and scalability with real-time inventory tracking.',
+      'Full-stack digital store with real-time inventory management, Stripe payment processing, and comprehensive administrative analytics dashboard.',
     tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     accent: '#f59e0b',
-    size: 'large',   // featured card
+    size: 'medium',
     year: '2024',
     category: 'Full-Stack',
     live: '#',
@@ -20,9 +33,9 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Task Management App',
+    title: 'Collaborative Task Workspace',
     description:
-      'Real-time collaborative task board with drag-and-drop, notifications, and team workspaces.',
+      'Real-time team collaboration board featuring drag-and-drop workflow lanes, Socket.io instant sync, and workspace permissions.',
     tags: ['Next.js', 'TypeScript', 'PostgreSQL', 'Socket.io'],
     accent: '#e11d48',
     size: 'medium',
@@ -33,10 +46,10 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Weather Dashboard',
+    title: 'Dynamic Weather Analytics',
     description:
-      'Beautiful weather app with location search, 7-day forecasts, and animated data visualizations.',
-    tags: ['React', 'OpenWeather API', 'Chart.js'],
+      'Interactive atmospheric intelligence dashboard with geo-search, dynamic 7-day projections, and canvas charts.',
+    tags: ['React', 'OpenWeather API', 'Chart.js', 'Tailwind'],
     accent: '#06b6d4',
     size: 'medium',
     year: '2023',
@@ -46,9 +59,9 @@ const projects = [
   },
   {
     id: 4,
-    title: 'Portfolio CMS',
+    title: 'Developer Portfolio Engine',
     description:
-      'Headless CMS for developers to manage portfolio content with a clean admin interface.',
+      'Containerized headless content architecture designed for high throughput, automated SEO indexing, and developer customization.',
     tags: ['Python', 'Django', 'React', 'Docker'],
     accent: '#10b981',
     size: 'medium',
@@ -57,36 +70,69 @@ const projects = [
     live: '#',
     github: '#',
   },
-  {
-    id: 5,
-    title: 'AI Chat Bot',
-    description:
-      'Intelligent conversational AI assistant powered by LLMs with context memory, multi-turn dialogue, and a sleek real-time UI.',
-    tags: ['Python', 'FastAPI', 'LangChain', 'React'],
-    accent: '#a855f7',
-    size: 'medium',
-    year: '2024',
-    category: 'AI / ML',
-    live: '#',
-    github: '#',
-  },
 ]
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, onSelect }) {
   const [hovered, setHovered] = useState(false)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const [spotlight, setSpotlight] = useState({ x: 0, y: 0, opacity: 0 })
+  const cardRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    // Calculate subtle 3D tilt
+    const rotateX = ((y - centerY) / centerY) * -6
+    const rotateY = ((x - centerX) / centerX) * 6
+
+    setTilt({ x: rotateX, y: rotateY })
+    setSpotlight({ x, y, opacity: 1 })
+  }
+
+  const handleMouseLeave = () => {
+    setHovered(false)
+    setTilt({ x: 0, y: 0 })
+    setSpotlight((prev) => ({ ...prev, opacity: 0 }))
+  }
 
   return (
     <motion.article
-      className={`pj-card pj-card--${project.size}`}
+      ref={cardRef}
+      className={`pj-card pj-card--${project.size} pj-card--3d`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
       custom={index * 0.08}
       variants={fadeUp}
       onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      style={{ '--accent': project.accent }}
+      onHoverEnd={handleMouseLeave}
+      onMouseMove={handleMouseMove}
+      onClick={() => onSelect(project)}
+      animate={{
+        rotateX: tilt.x,
+        rotateY: tilt.y,
+        transformPerspective: 1000,
+      }}
+      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+      style={{
+        '--accent': project.accent,
+        cursor: 'pointer',
+      }}
     >
+      {/* Specular Spotlight Effect */}
+      <div
+        className="pj-card__spotlight"
+        style={{
+          opacity: spotlight.opacity,
+          background: `radial-gradient(550px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255, 255, 255, 0.08), transparent 50%)`,
+        }}
+      />
+
       {/* Top accent bar */}
       <motion.div
         className="pj-card__bar"
@@ -100,7 +146,10 @@ function ProjectCard({ project, index }) {
       </span>
 
       {/* Category pill */}
-      <div className="pj-card__category">{project.category}</div>
+      <div className="pj-card__category">
+        {project.category === 'AI / ML' && <HiSparkles className="inline-icon" />}
+        {project.category}
+      </div>
 
       {/* Main content */}
       <div className="pj-card__body">
@@ -109,8 +158,10 @@ function ProjectCard({ project, index }) {
 
         {/* Tags */}
         <div className="pj-card__tags">
-          {project.tags.map(t => (
-            <span key={t} className="pj-card__tag">{t}</span>
+          {project.tags.map((t) => (
+            <span key={t} className="pj-card__tag">
+              {t}
+            </span>
           ))}
         </div>
       </div>
@@ -118,25 +169,33 @@ function ProjectCard({ project, index }) {
       {/* Footer — year + links */}
       <div className="pj-card__footer">
         <span className="pj-card__year">{project.year}</span>
-        <div className="pj-card__links">
-          <motion.a
-            href={project.github}
-            aria-label="GitHub"
-            className="pj-link"
-            whileHover={{ scale: 1.12 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <FaGithub />
-          </motion.a>
-          <motion.a
-            href={project.live}
-            aria-label="Live demo"
-            className="pj-link pj-link--accent"
-            whileHover={{ scale: 1.12 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <HiExternalLink />
-          </motion.a>
+        <div className="pj-card__links" onClick={(e) => e.stopPropagation()}>
+          {project.github && project.github !== '#' && (
+            <motion.a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="pj-link"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <FaGithub />
+            </motion.a>
+          )}
+          {project.live && project.live !== '#' && (
+            <motion.a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Live demo"
+              className="pj-link pj-link--accent"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <HiExternalLink />
+            </motion.a>
+          )}
         </div>
       </div>
 
@@ -153,7 +212,7 @@ function ProjectCard({ project, index }) {
         )}
       </AnimatePresence>
 
-      {/* "View project" reveal */}
+      {/* "View case study" reveal */}
       <AnimatePresence>
         {hovered && (
           <motion.div
@@ -163,7 +222,7 @@ function ProjectCard({ project, index }) {
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.25 }}
           >
-            View Project <HiArrowRight />
+            Deep Dive Case Study <HiArrowRight />
           </motion.div>
         )}
       </AnimatePresence>
@@ -171,20 +230,25 @@ function ProjectCard({ project, index }) {
   )
 }
 
-export default function Projects() {
+export default function Projects({ onSelectProject }) {
   return (
     <section id="projects" className="section projects">
       <div className="container">
         <SectionHeading
           label="Projects"
           title="Selected work"
-          description="A curated set of projects that reflect my craft."
+          description="Click any project for deep-dive architectural insights and live demonstrations."
         />
 
         {/* Bento grid */}
         <div className="pj-grid">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+          {projectsData.map((project, i) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={i}
+              onSelect={onSelectProject}
+            />
           ))}
         </div>
       </div>

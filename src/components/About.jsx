@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Reveal, SectionHeading, slideInLeft, slideInRight } from './animations'
 import sourabhImg from '../assets/sourabh.png'
+import { HiDocumentText } from 'react-icons/hi'
 
 const stats = [
   { value: '3+', label: 'Years Experience' },
@@ -8,7 +9,7 @@ const stats = [
   { value: '15+', label: 'Technologies' },
 ]
 
-export default function About() {
+export default function About({ onOpenResume }) {
   return (
     <section id="about" className="section about">
       <div className="container about__grid">
@@ -76,31 +77,29 @@ export default function About() {
           />
           <Reveal delay={0.1}>
             <p>
-              I'm <strong>Sourabh Dhulrao</strong>, a developer who loves turning ideas into
-              polished, performant web applications. I focus on writing maintainable code,
-              creating intuitive user interfaces, and delivering solutions that make a real impact.
+              I'm <strong>Sourabh Dhulrao</strong>, an AI Engineer and Full-Stack Developer who loves
+              turning complex technical challenges into polished, performant web applications.
+              I specialize in integrating intelligent LLM workflows, designing responsive interfaces,
+              and delivering solutions that make an immediate real-world impact.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p>
-              When I'm not coding, you'll find me exploring new technologies, contributing
-              to open source, or refining my craft one project at a time. I believe great
-              software is a blend of technical excellence and human-centered design.
+              Whether it's fine-tuning prompt pipelines, creating real-time multi-user systems,
+              or crafting fluid 3D WebGL visuals, I believe the best software lives at the intersection
+              of technical rigor and human-centered design.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <motion.a
-              href="#contact"
+            <motion.button
+              type="button"
               className="btn btn--primary"
-              onClick={(e) => {
-                e.preventDefault()
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
-              }}
+              onClick={onOpenResume}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
-              Download Resume
-            </motion.a>
+              <HiDocumentText /> View & Download Resume
+            </motion.button>
           </Reveal>
         </motion.div>
       </div>
