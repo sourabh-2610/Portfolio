@@ -4,7 +4,7 @@ import * as THREE from 'three'
 /**
  * Supported 3D particle formations
  */
-export const SHAPES = ['logo', 'torus', 'constellation', 'tree', 'portal']
+export const SHAPES = ['portal', 'logo', 'torus', 'constellation', 'tree']
 
 // ---------------------------------------------------------------------------
 // 1. Soft Radial Glow Bloom Texture Generator (Canvas in-memory)
@@ -301,7 +301,7 @@ function generateSigilLogo(positions, count) {
 // 3. Main ParticleBackground Component
 // ---------------------------------------------------------------------------
 export default function ParticleBackground({
-  shape = 'logo',
+  shape = 'portal',
   interactiveMouse = true,
   autoMorph = true,
   morphInterval = 5000,

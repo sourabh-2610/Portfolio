@@ -17,7 +17,7 @@ export default function App() {
   return (
     <ThemeProvider>
       {isLoading && <Loader onComplete={() => setIsLoading(false)} name="SD" />}
-      <ParticleBackground shape="logo" autoMorph={true} morphInterval={5000} interactiveMouse={true} />
+      <ParticleBackground shape="portal" autoMorph={true} morphInterval={5000} interactiveMouse={true} />
       <SplashCursor
         RAINBOW_MODE={false}
         COLOR="#8b5cf6"
