@@ -11,19 +11,19 @@ export const SHAPES = ['portal', 'logo', 'torus', 'constellation', 'tree']
 // ---------------------------------------------------------------------------
 function createGlowTexture() {
   const canvas = document.createElement('canvas')
-  canvas.width = 64
-  canvas.height = 64
+  canvas.width = 128
+  canvas.height = 128
   const ctx = canvas.getContext('2d')
 
-  const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32)
+  const gradient = ctx.createRadialGradient(64, 64, 0, 64, 64, 64)
   gradient.addColorStop(0, 'rgba(255, 255, 255, 1)')
-  gradient.addColorStop(0.2, 'rgba(77, 232, 255, 0.9)')
-  gradient.addColorStop(0.55, 'rgba(62, 123, 250, 0.45)')
-  gradient.addColorStop(0.85, 'rgba(155, 92, 255, 0.15)')
-  gradient.addColorStop(1, 'rgba(155, 92, 255, 0)')
+  gradient.addColorStop(0.18, 'rgba(90, 242, 255, 1)')
+  gradient.addColorStop(0.46, 'rgba(67, 97, 238, 0.8)')
+  gradient.addColorStop(0.75, 'rgba(181, 23, 158, 0.3)')
+  gradient.addColorStop(1, 'rgba(181, 23, 158, 0)')
 
   ctx.fillStyle = gradient
-  ctx.fillRect(0, 0, 64, 64)
+  ctx.fillRect(0, 0, 128, 128)
 
   const texture = new THREE.CanvasTexture(canvas)
   texture.needsUpdate = true
@@ -335,11 +335,12 @@ export default function ParticleBackground({
     if (!container) return
 
     const isMobile = window.innerWidth < 768
-    const particleCount = isMobile ? 2600 : 5200
+    const particleCount = isMobile ? 3600 : 7200
 
     // A. Scene & Camera Setup
     const scene = new THREE.Scene()
-    scene.fog = new THREE.FogExp2(0x040711, 0.08)
+    // Reduced fog so particles remain vibrant and crisp across the full screen
+    scene.fog = new THREE.FogExp2(0x040711, 0.022)
 
     const camera = new THREE.PerspectiveCamera(
       55,
@@ -361,44 +362,81 @@ export default function ParticleBackground({
     container.appendChild(renderer.domElement)
 
     // C. Cosmic Starfield
-    const starCount = isMobile ? 400 : 900
+    const starCount = isMobile ? 600 : 1300
     const starGeo = new THREE.BufferGeometry()
     const starPos = new Float32Array(starCount * 3)
     const starColors = new Float32Array(starCount * 3)
 
     for (let i = 0; i < starCount; i++) {
-      starPos[i * 3] = (Math.random() - 0.5) * 45
-      starPos[i * 3 + 1] = (Math.random() - 0.5) * 35
-      starPos[i * 3 + 2] = -5 - Math.random() * 25
+      starPos[i * 3] = (Math.random() - 0.5) * 48
+      starPos[i * 3 + 1] = (Math.random() - 0.5) * 38
+      starPos[i * 3 + 2] = -4 - Math.random() * 26
 
       const tint = Math.random()
-      if (tint > 0.7) {
-        starColors[i * 3] = 0.3
-        starColors[i * 3 + 1] = 0.9
+      if (tint > 0.65) {
+        starColors[i * 3] = 0.35
+        starColors[i * 3 + 1] = 0.95
         starColors[i * 3 + 2] = 1.0
-      } else if (tint > 0.4) {
-        starColors[i * 3] = 0.4
-        starColors[i * 3 + 1] = 0.5
+      } else if (tint > 0.35) {
+        starColors[i * 3] = 0.55
+        starColors[i * 3 + 1] = 0.6
         starColors[i * 3 + 2] = 1.0
       } else {
-        starColors[i * 3] = 0.8
-        starColors[i * 3 + 1] = 0.85
-        starColors[i * 3 + 2] = 0.95
+        starColors[i * 3] = 0.9
+        starColors[i * 3 + 1] = 0.92
+        starColors[i * 3 + 2] = 1.0
       }
     }
     starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3))
     starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3))
 
     const starMat = new THREE.PointsMaterial({
-      size: 0.05,
+      size: 0.07,
       vertexColors: true,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.85,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     })
     const starField = new THREE.Points(starGeo, starMat)
     scene.add(starField)
+
+    // C2. Ambient Cosmic Floating Dust Field (covers full screen viewport)
+    const dustCount = isMobile ? 250 : 600
+    const dustGeo = new THREE.BufferGeometry()
+    const dustPos = new Float32Array(dustCount * 3)
+    const dustVel = []
+    const dustColors = new Float32Array(dustCount * 3)
+
+    for (let i = 0; i < dustCount; i++) {
+      dustPos[i * 3] = (Math.random() - 0.5) * 34
+      dustPos[i * 3 + 1] = (Math.random() - 0.5) * 26
+      dustPos[i * 3 + 2] = -8 + Math.random() * 12
+      dustVel.push({
+        vx: (Math.random() - 0.5) * 0.003,
+        vy: 0.002 + Math.random() * 0.004,
+      })
+
+      const isCyan = Math.random() > 0.4
+      dustColors[i * 3] = isCyan ? 0.3 : 0.75
+      dustColors[i * 3 + 1] = isCyan ? 0.92 : 0.45
+      dustColors[i * 3 + 2] = 1.0
+    }
+    dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3))
+    dustGeo.setAttribute('color', new THREE.BufferAttribute(dustColors, 3))
+
+    const glowTexture = createGlowTexture()
+    const dustMat = new THREE.PointsMaterial({
+      size: 0.08,
+      map: glowTexture,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
+    const dustField = new THREE.Points(dustGeo, dustMat)
+    scene.add(dustField)
 
     // D. Morphing 3D Particle Manifold
     const particleGeometry = new THREE.BufferGeometry()
@@ -437,21 +475,20 @@ export default function ParticleBackground({
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(currentPositions, 3))
     particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
 
-    const glowTexture = createGlowTexture()
     const particleMaterial = new THREE.PointsMaterial({
-      size: isMobile ? 0.085 : 0.075,
+      size: isMobile ? 0.115 : 0.105,
       map: glowTexture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.88,
+      opacity: 0.95,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     })
 
     const getBaseOffsetX = () => {
       const w = container.clientWidth || window.innerWidth
-      if (w >= 1200) return 1.65
-      if (w >= 992) return 1.35
+      if (w >= 1200) return 0.95
+      if (w >= 992) return 0.65
       return 0
     }
     let currentOffsetX = getBaseOffsetX()
@@ -484,7 +521,7 @@ export default function ParticleBackground({
       const ringMat = new THREE.LineBasicMaterial({
         color: r % 2 === 0 ? 0x4de8ff : 0x3e7bfa,
         transparent: true,
-        opacity: 0.35,
+        opacity: 0.55,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       })
@@ -571,6 +608,20 @@ export default function ParticleBackground({
       starField.rotation.y = elapsedTime * 0.02 + mouseRef.current.x * 0.08
       starField.rotation.x = -mouseRef.current.y * 0.05
 
+      // Drifting ambient cosmic dust animation
+      dustField.rotation.y = elapsedTime * 0.015 + mouseRef.current.x * 0.04
+      dustField.rotation.x = Math.sin(elapsedTime * 0.05) * 0.03
+
+      const dPos = dustGeo.attributes.position.array
+      for (let d = 0; d < dustCount; d++) {
+        dPos[d * 3] += dustVel[d].vx
+        dPos[d * 3 + 1] += dustVel[d].vy
+        if (dPos[d * 3 + 1] > 14) dPos[d * 3 + 1] = -14
+        if (dPos[d * 3] > 18) dPos[d * 3] = -18
+        if (dPos[d * 3] < -18) dPos[d * 3] = 18
+      }
+      dustGeo.attributes.position.needsUpdate = true
+
       const positions = particleGeometry.attributes.position.array
       const mouseWorldX = mouseRef.current.worldX
       const mouseWorldY = mouseRef.current.worldY
@@ -616,7 +667,7 @@ export default function ParticleBackground({
 
         const mat = ripple.mesh.material
         const opacityCurve = Math.sin(ripple.phase * Math.PI)
-        mat.opacity = opacityCurve * 0.48
+        mat.opacity = opacityCurve * 0.55
       }
 
       renderer.render(scene, camera)
@@ -638,6 +689,8 @@ export default function ParticleBackground({
       particleMaterial.dispose()
       starGeo.dispose()
       starMat.dispose()
+      dustGeo.dispose()
+      dustMat.dispose()
       glowTexture.dispose()
       rippleRings.forEach(r => {
         r.mesh.geometry.dispose()
@@ -660,7 +713,7 @@ export default function ParticleBackground({
         pointerEvents: 'none',
         zIndex: -1,
         overflow: 'hidden',
-        background: 'radial-gradient(ellipse at 50% 40%, #080f24 0%, #040711 75%, #02040a 100%)',
+        background: 'radial-gradient(ellipse at 50% 35%, #0c1538 0%, #050816 65%, #020308 100%)',
         ...style,
       }}
     />
